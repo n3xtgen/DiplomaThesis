@@ -1,0 +1,183 @@
+\documentclass[12pt,oneside]{fithesis2}
+\usepackage{graphicx}
+\usepackage[english]{babel}       % Multilingual support
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % T1 font encoding
+\usepackage[                      % A sans serif font that blends well with Palatino
+  scaled=0.86
+]{berasans}
+\usepackage[                      % A tt font if you do not like LM's tt
+  scaled=1.03
+]{inconsolata}
+\usepackage{blindtext}
+\usepackage[hyphens]{url}
+\usepackage[                      % Clickable links
+  plainpages = false,               % We have multiple page numberings
+  pdfpagelabels,
+  hidelinks                     % Generate pdf page labels
+]{hyperref}            % Lorem ipsum generator
+\usepackage{listings}
+\usepackage[svgnames]{xcolor}
+
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+\definecolor{maroon}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\lstdefinestyle{eclipse_java}
+{
+	language=Java,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{javapurple}\bfseries,
+	stringstyle=\color{javared},
+	commentstyle=\color{javagreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false
+}
+
+
+\lstdefinestyle{my_xml}
+{
+	language=XML,
+	basicstyle=\ttfamily,
+	morestring=[s]{"}{"},
+	morecomment=[s]{?}{?},
+	morecomment=[s]{!--}{--},
+	commentstyle=\color{darkgreen},
+	moredelim=[s][\color{black}]{>}{<},
+	moredelim=[s][\color{red}]{\ }{=},
+	stringstyle=\color{blue},
+	identifierstyle=\color{maroon},
+	tabsize=2,
+	showstringspaces=false
+}
+
+\lstdefinestyle{json}
+{
+	basicstyle=\ttfamily,
+	tabsize=2,
+	showstringspaces=false,
+	keywordstyle=\bfseries,
+	morekeywords={thrown}
+}
+
+\lstdefinestyle{byteman}
+{
+	tabsize=2,
+	showstringspaces=false,
+	basicstyle=\ttfamily,
+}
+
+\lstset{frame=lrtb, captionpos=b, breaklines=true, showstringspaces=false, basicstyle=\ttfamily}
+\lstset{language=Java}
+\lstset{language=XML}
+
+\usepackage[chapter]{minted}
+
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{nameref}
+
+\thesislang{en}                   % The language of the thesis
+\thesistitle{Monitoring Extension for Microservices Platform SilverWare}       % The title of the thesis
+\thesissubtitle{Diploma Thesis}  % The type of the thesis
+\thesisstudent{Bc. Jaroslav Dufek}          % Your name
+\thesiswoman{false}                % Your gender
+\thesisfaculty{fi}                % Your faculty
+\thesisyear{\the\year}     % The academic term of your thesis defense
+\thesisadvisor{Mgr. Martin Večeřa}   % Your advisor
+
+\begin{document}
+  \FrontMatter                    % The front matter
+    \ThesisTitlePage                % The title page
+    \begin{ThesisDeclaration}       % The declaration
+      \DeclarationText
+      \AdvisorName
+    \end{ThesisDeclaration}
+    \begin{ThesisThanks}            % The acknowledgements (optional)
+      Doplnit podekovani.
+    \end{ThesisThanks}
+    \begin{ThesisAbstract}          % The abstract
+      The aim of this thesis is to design and implement monitoring extension for microservices platform Silverware. At the beginning I study current most known microservices platforms and research how they implemented their monitoring part. Then I come up with possible monitoring solution for SilverWare that would be appropriate for the scope of this thesis. Lastly I implement this solution using Hawtio platform as a front-end.
+    \end{ThesisAbstract}
+    \begin{ThesisKeyWords}          % The keywords
+      microservices, SilverWare, monitoring, JMX, Java, Hawtio, OpenShift
+    \end{ThesisKeyWords}
+    \tableofcontents                % The table of contents
+%   \listoftables                   % The list of tables (optional)
+%   \listoffigures                  % The list of figures (optional)
+  
+  \MainMatter                     % The main matter
+\chapter{Introduction}
+
+\section{Goals}
+
+\section{Structure of the Thesis}
+
+
+
+\chapter{Microservices}
+
+\section{What and why}
+
+\section{Existing solutions}
+
+\subsection{Spring Boot}
+
+\subsection{Wildfly Swarm}
+
+\subsection{Dropwizard}
+
+
+
+
+\chapter{Microservice activity monitoring}
+
+\section{What, why, how}
+
+\section{Existing solutions}
+
+\subsection{Spring Boot}
+
+\subsection{Wildfly Swarm}
+
+\subsection{Dropwizard}
+
+\subsection{Hystrix Dashboard}
+
+\subsection{Prometheus}
+
+
+\chapter{Design of suggested solution}
+
+\section{Monitored attributes}
+
+\section{Means of monitoring}
+
+\section{Charts}
+
+
+
+\chapter{Implementation}
+
+\section{What is implemented}
+
+\section{Code}
+
+\section{Tests}
+
+\section{Performance}
+
+
+\chapter{Quickstart demo}
+
+
+\chapter{Conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{sources}
+\end{document}

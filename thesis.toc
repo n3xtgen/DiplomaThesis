@@ -1,0 +1,29 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}\bfseries Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}\slshape Goals}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}\slshape Structure of the Thesis}{1}{section.1.2}
+\contentsline {chapter}{\numberline {2}\bfseries Microservices}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}\slshape What and why}{2}{section.2.1}
+\contentsline {section}{\numberline {2.2}\slshape Existing solutions}{2}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}\rmfamily Spring Boot}{2}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}\rmfamily Wildfly Swarm}{2}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}\rmfamily Dropwizard}{2}{subsection.2.2.3}
+\contentsline {chapter}{\numberline {3}\bfseries Microservice activity monitoring}{3}{chapter.3}
+\contentsline {section}{\numberline {3.1}\slshape What, why, how}{3}{section.3.1}
+\contentsline {section}{\numberline {3.2}\slshape Existing solutions}{3}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}\rmfamily Spring Boot}{3}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}\rmfamily Wildfly Swarm}{3}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}\rmfamily Dropwizard}{3}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}\rmfamily Hystrix Dashboard}{3}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}\rmfamily Prometheus}{3}{subsection.3.2.5}
+\contentsline {chapter}{\numberline {4}\bfseries Design of suggested solution}{4}{chapter.4}
+\contentsline {section}{\numberline {4.1}\slshape Monitored attributes}{4}{section.4.1}
+\contentsline {section}{\numberline {4.2}\slshape Means of monitoring}{4}{section.4.2}
+\contentsline {section}{\numberline {4.3}\slshape Charts}{4}{section.4.3}
+\contentsline {chapter}{\numberline {5}\bfseries Implementation}{5}{chapter.5}
+\contentsline {section}{\numberline {5.1}\slshape What is implemented}{5}{section.5.1}
+\contentsline {section}{\numberline {5.2}\slshape Code}{5}{section.5.2}
+\contentsline {section}{\numberline {5.3}\slshape Tests}{5}{section.5.3}
+\contentsline {section}{\numberline {5.4}\slshape Performance}{5}{section.5.4}
+\contentsline {chapter}{\numberline {6}\bfseries Quickstart demo}{6}{chapter.6}
+\contentsline {chapter}{\numberline {7}\bfseries Conclusion}{7}{chapter.7}
