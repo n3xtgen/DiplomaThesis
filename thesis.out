@@ -1,28 +1,34 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.1.1}{ Goals}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.1}{ Goals and challenges}{chapter.1}% 2
 \BOOKMARK [1][-]{section.1.2}{ Structure of the Thesis}{chapter.1}% 3
 \BOOKMARK [0][-]{chapter.2}{Microservices}{}% 4
-\BOOKMARK [1][-]{section.2.1}{ What and why}{chapter.2}% 5
-\BOOKMARK [1][-]{section.2.2}{ Existing solutions}{chapter.2}% 6
-\BOOKMARK [2][-]{subsection.2.2.1}{ Spring Boot}{section.2.2}% 7
-\BOOKMARK [2][-]{subsection.2.2.2}{ Wildfly Swarm}{section.2.2}% 8
-\BOOKMARK [2][-]{subsection.2.2.3}{ Dropwizard}{section.2.2}% 9
-\BOOKMARK [0][-]{chapter.3}{Microservice activity monitoring}{}% 10
-\BOOKMARK [1][-]{section.3.1}{ What, why, how}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.2}{ Existing solutions}{chapter.3}% 12
-\BOOKMARK [2][-]{subsection.3.2.1}{ Spring Boot}{section.3.2}% 13
-\BOOKMARK [2][-]{subsection.3.2.2}{ Wildfly Swarm}{section.3.2}% 14
-\BOOKMARK [2][-]{subsection.3.2.3}{ Dropwizard}{section.3.2}% 15
-\BOOKMARK [2][-]{subsection.3.2.4}{ Hystrix Dashboard}{section.3.2}% 16
-\BOOKMARK [2][-]{subsection.3.2.5}{ Prometheus}{section.3.2}% 17
-\BOOKMARK [0][-]{chapter.4}{Design of suggested solution}{}% 18
-\BOOKMARK [1][-]{section.4.1}{ Monitored attributes}{chapter.4}% 19
-\BOOKMARK [1][-]{section.4.2}{ Means of monitoring}{chapter.4}% 20
-\BOOKMARK [1][-]{section.4.3}{ Charts}{chapter.4}% 21
-\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 22
-\BOOKMARK [1][-]{section.5.1}{ What is implemented}{chapter.5}% 23
-\BOOKMARK [1][-]{section.5.2}{ Code}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.3}{ Tests}{chapter.5}% 25
-\BOOKMARK [1][-]{section.5.4}{ Performance}{chapter.5}% 26
-\BOOKMARK [0][-]{chapter.6}{Quickstart demo}{}% 27
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 28
+\BOOKMARK [1][-]{section.2.1}{ Breaking the monolith}{chapter.2}% 5
+\BOOKMARK [2][-]{section*.6}{ Enterprise applications are often composed of three main parts:}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.1}{ Single responsibility principle}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.2}{ Isolation}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.3}{ Data ownership}{section.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.1.4}{ Autonomy}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.5}{ Resilience}{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.6}{ Light-weight communication}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.7}{ Continuous integration}{section.2.1}% 13
+\BOOKMARK [3][-]{section*.7}{ Key practices that enable continuous integration are:}{subsection.2.1.7}% 14
+\BOOKMARK [2][-]{subsection.2.1.8}{ Utilization of infrastructure}{section.2.1}% 15
+\BOOKMARK [2][-]{subsection.2.1.9}{ Conway`s Law}{section.2.1}% 16
+\BOOKMARK [1][-]{section.2.2}{ Microservices vs Service Oriented Architecture}{chapter.2}% 17
+\BOOKMARK [2][-]{section*.8}{ Lets summarize the key differences:}{section.2.2}% 18
+\BOOKMARK [1][-]{section.2.3}{ Advantages and disadvantages}{chapter.2}% 19
+\BOOKMARK [2][-]{section*.9}{ The Benefits of Microservices}{section.2.3}% 20
+\BOOKMARK [2][-]{subsection.2.3.1}{ Long-term maintainability}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.2}{ Independent and horizontal scalability}{section.2.3}% 22
+\BOOKMARK [2][-]{subsection.2.3.3}{ Continuous delivery}{section.2.3}% 23
+\BOOKMARK [2][-]{subsection.2.3.4}{ Technology diversity}{section.2.3}% 24
+\BOOKMARK [3][-]{section*.10}{ The Drawbacks of Microservices}{subsection.2.3.4}% 25
+\BOOKMARK [2][-]{subsection.2.3.5}{ Architecture complexity}{section.2.3}% 26
+\BOOKMARK [2][-]{subsection.2.3.6}{ Network communication}{section.2.3}% 27
+\BOOKMARK [2][-]{subsection.2.3.7}{ Data consistency}{section.2.3}% 28
+\BOOKMARK [2][-]{subsection.2.3.8}{ Testing complexity}{section.2.3}% 29
+\BOOKMARK [3][-]{section*.11}{ Summary}{subsection.2.3.8}% 30
+\BOOKMARK [1][-]{section.2.4}{ Containers}{chapter.2}% 31
+\BOOKMARK [1][-]{section.2.5}{ Existing frameworks and solutions}{chapter.2}% 32
+\BOOKMARK [1][-]{section.2.6}{ SilverWare}{chapter.2}% 33
+\BOOKMARK [0][-]{chapter.3}{Monitoring of microservices}{}% 34

@@ -23,46 +23,72 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}\bfseries  Introduction}{1}{chapter.1}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1.1}\slshape   Goals}{1}{section.1.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}\slshape   Goals and challenges}{1}{section.1.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}\slshape   Structure of the Thesis}{1}{section.1.2}}
+\citation{ma}
+\citation{mytat}
+\citation{mytat}
+\citation{rma}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}\bfseries  Microservices}{2}{chapter.2}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}\slshape   What and why}{2}{section.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}\slshape   Existing solutions}{2}{section.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}\rmfamily   Spring Boot}{2}{subsection.2.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}\rmfamily   Wildfly Swarm}{2}{subsection.2.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}\rmfamily   Dropwizard}{2}{subsection.2.2.3}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}\bfseries  Microservice activity monitoring}{3}{chapter.3}}
-\@writefile{lof}{\addvspace {4\p@ }}
-\@writefile{lot}{\addvspace {4\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}\slshape   What, why, how}{3}{section.3.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}\slshape   Existing solutions}{3}{section.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}\rmfamily   Spring Boot}{3}{subsection.3.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}\rmfamily   Wildfly Swarm}{3}{subsection.3.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}\rmfamily   Dropwizard}{3}{subsection.3.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}\rmfamily   Hystrix Dashboard}{3}{subsection.3.2.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}\rmfamily   Prometheus}{3}{subsection.3.2.5}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}\bfseries  Design of suggested solution}{4}{chapter.4}}
-\@writefile{lof}{\addvspace {4\p@ }}
-\@writefile{lot}{\addvspace {4\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}\slshape   Monitored attributes}{4}{section.4.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}\slshape   Means of monitoring}{4}{section.4.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}\slshape   Charts}{4}{section.4.3}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}\bfseries  Implementation}{5}{chapter.5}}
-\@writefile{lof}{\addvspace {4\p@ }}
-\@writefile{lot}{\addvspace {4\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}\slshape   What is implemented}{5}{section.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}\slshape   Code}{5}{section.5.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}\slshape   Tests}{5}{section.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}\slshape   Performance}{5}{section.5.4}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}\bfseries  Quickstart demo}{6}{chapter.6}}
-\@writefile{lof}{\addvspace {4\p@ }}
-\@writefile{lot}{\addvspace {4\p@ }}
+\citation{mytat}
+\citation{rma}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}\slshape   Breaking the monolith}{3}{section.2.1}}
+\citation{mf}
+\@writefile{toc}{\contentsline {paragraph}{ Enterprise applications are often composed of three main parts:}{4}{section*.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Monolithic application\FN@sf@gobble@optonly  }}{5}{figure.2.1}}
+\newlabel{monolithic_application}{{2.1}{5}{Monolithic application\footnotemark }{figure.2.1}{}}
+\newlabel{microservice_application}{{2.1}{7}{Enterprise applications are often composed of three main parts:}{figure.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Application as microservices\FN@sf@gobble@optonly  }}{7}{figure.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}\rmfamily   Single responsibility principle}{8}{subsection.2.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}\rmfamily   Isolation}{8}{subsection.2.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}\rmfamily   Data ownership}{8}{subsection.2.1.3}}
+\citation{mf}
+\newlabel{decentralised_data}{{2.1.3}{9}{Data ownership}{subsection.2.1.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Data division \cite  {mf}}}{9}{figure.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.4}\rmfamily   Autonomy}{9}{subsection.2.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.5}\rmfamily   Resilience}{10}{subsection.2.1.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.6}\rmfamily   Light-weight communication}{10}{subsection.2.1.6}}
+\citation{ma}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.7}\rmfamily   Continuous integration}{11}{subsection.2.1.7}}
+\@writefile{toc}{\contentsline {paragraph}{ Key practices that enable continuous integration are:}{11}{section*.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.8}\rmfamily   Utilization of infrastructure}{12}{subsection.2.1.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.9}\rmfamily   Conway`s Law}{12}{subsection.2.1.9}}
+\citation{mvsoa}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}\slshape   Microservices vs Service Oriented Architecture}{13}{section.2.2}}
+\citation{mf}
+\@writefile{toc}{\contentsline {paragraph}{ Lets summarize the key differences:}{14}{section*.8}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}\slshape   Advantages and disadvantages}{14}{section.2.3}}
+\@writefile{toc}{\contentsline {paragraph}{ The Benefits of Microservices}{14}{section*.9}}
+\citation{rma}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}\rmfamily   Long-term maintainability}{15}{subsection.2.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}\rmfamily   Independent and horizontal scalability}{15}{subsection.2.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}\rmfamily   Continuous delivery}{15}{subsection.2.3.3}}
+\citation{rma}
+\newlabel{fast_fish}{{2.3.3}{16}{Continuous delivery}{subsection.2.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Slow fish versus fast fish \cite  {rma}}}{16}{figure.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}\rmfamily   Technology diversity}{17}{subsection.2.3.4}}
+\@writefile{toc}{\contentsline {paragraph}{ The Drawbacks of Microservices}{17}{section*.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.5}\rmfamily   Architecture complexity}{17}{subsection.2.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.6}\rmfamily   Network communication}{18}{subsection.2.3.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.7}\rmfamily   Data consistency}{18}{subsection.2.3.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.8}\rmfamily   Testing complexity}{19}{subsection.2.3.8}}
+\@writefile{toc}{\contentsline {paragraph}{ Summary\newline  \newline  }{19}{section*.11}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}\slshape   Containers}{19}{section.2.4}}
+\newlabel{productivity}{{2.3.8}{20}{Summary\newline \newline }{section*.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Relationship between complexity and productivity\FN@sf@gobble@optonly  }}{20}{figure.2.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}\slshape   Existing frameworks and solutions}{21}{section.2.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}\slshape   SilverWare}{21}{section.2.6}}
 \bibstyle{IEEEtran}
 \bibdata{sources}
-\@ifundefined{unitindent}{\newdimen\unitindent\let \@indentset\relax }{}
-\global \unitindent=30.0pt\relax\@indentset\relax
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}\bfseries  Conclusion}{7}{chapter.7}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}\bfseries  Monitoring of microservices}{22}{chapter.3}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
+\bibcite{ma}{1}
+\bibcite{mytat}{2}
+\bibcite{rma}{3}
+\bibcite{mf}{4}
+\bibcite{mvsoa}{5}
+\@ifundefined{unitindent}{\newdimen\unitindent\let \@indentset\relax }{}
+\global \unitindent=35.0pt\relax\@indentset\relax
