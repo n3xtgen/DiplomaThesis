@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.18)  11 MAY 2017 20:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.18)  22 MAY 2017 00:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1032,7 +1032,11 @@ runsystem(which pygmentize && touch thesis.aex)...executed.
 runsystem(rm thesis.aex)...executed.
 
 
-(./thesis.aux)
+(./thesis.aux
+
+LaTeX Warning: Label `spanmanager' multiply defined.
+
+)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
@@ -1105,13 +1109,7 @@ LaTeX Info: Redefining \nameref on input line 100.
 
 ] [3
 
-]
-Overfull \hbox (6.52074pt too wide) in paragraph at lines 116--117
-\T1/qpl/m/n/12 ten-sion for mi-croser-vices plat-form Sil-ver-ware. At the be-g
-in-ning I study
- []
-
-[4
+] [4
 
 ] [5
 
@@ -1154,7 +1152,7 @@ LaTeX Font Warning: Font shape `T1/qpl/m/sl' in size <12> not available
  [7]
 Chapter 1.
 
-Overfull \hbox (1.64987pt too wide) in paragraph at lines 136--137
+Overfull \hbox (1.64987pt too wide) in paragraph at lines 132--133
 \T1/qpl/m/n/12 croser-vices and looked for ap-pro-pri-ate stan-dards and so-lu-
 tions which
  []
@@ -1162,264 +1160,651 @@ tions which
 [1
 
 
-]
+] [2]
 Chapter 2.
 
-Overfull \hbox (3.00583pt too wide) in paragraph at lines 158--159
+Overfull \hbox (3.00583pt too wide) in paragraph at lines 162--163
 []\T1/qpl/m/n/12 Microservice ar-chi-tec-ture is an ap-proach to mod-u-lar-iza-
 tion of soft-
  []
 
-[2
+[3
 
 ]
-Overfull \hbox (11.23773pt too wide) in paragraph at lines 162--163
+Overfull \hbox (11.23773pt too wide) in paragraph at lines 166--167
 \T1/qpl/m/n/12 sin-gle core pro-ces-sors, slow net-works, ex-pen-sive disks, ex
 -pen-sive mem-
  []
 
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 181.
+(hyperref)                than one, level fixed on input line 185.
 
-[3]
-Overfull \hbox (3.20578pt too wide) in paragraph at lines 182--183
+[4]
+Overfull \hbox (3.20578pt too wide) in paragraph at lines 186--187
 []\T1/qpl/m/n/12 a server-side ap-pli-ca-tion - con-sist-ing of web-server cou-
 pled with
  []
 
-<images/monolithic_application2.png, id=247, 184.7703pt x 195.129pt>
+<images/monolithic_application2.png, id=392, 184.7703pt x 195.129pt>
 File: images/monolithic_application2.png Graphic file (type png)
 
 <use images/monolithic_application2.png>
 Package pdftex.def Info: images/monolithic_application2.png used on input line 
-188.
+192.
 (pdftex.def)             Requested size: 361.34999pt x 381.6463pt.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.29999pt on input line 193.
+(Font)              scaled to size 10.29999pt on input line 197.
 
-Overfull \hbox (34.67369pt too wide) in paragraph at lines 201--202
+Overfull \hbox (34.67369pt too wide) in paragraph at lines 205--206
 \T1/qpl/m/n/12 processor-intensive, oth-ers memory-intensive, storage-intensive
  or network-
  []
 
-[4]
+[5]
 Underfull \vbox (badness 2042) has occurred while \output is active []
 
- [5pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.204 
+l.208 
        <./images/monolithic_application2.png>]
-<images/microservice_application2.png, id=270, 196.3335pt x 200.4288pt>
+<images/microservice_application2.png, id=416, 196.3335pt x 200.4288pt>
 File: images/microservice_application2.png Graphic file (type png)
 
 <use images/microservice_application2.png>
 Package pdftex.def Info: images/microservice_application2.png used on input lin
-e 214.
+e 218.
 (pdftex.def)             Requested size: 361.34999pt x 368.92496pt.
 
 Overfull \vbox (2.03389pt too high) has occurred while \output is active []
 
 
-[6]
+[7]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.225 
+l.229 
        <./images/microservice_application2.png>]
-Overfull \hbox (5.39375pt too wide) in paragraph at lines 234--235
+Overfull \hbox (5.39375pt too wide) in paragraph at lines 238--239
 \T1/qpl/m/n/12 croser-vices. Any other mi-croser-vice can ac-cess these data on
 ly through
  []
 
 
-Overfull \hbox (2.75381pt too wide) in paragraph at lines 236--238
+Overfull \hbox (2.75381pt too wide) in paragraph at lines 240--242
 []\T1/qpl/m/n/12 Example of this may be e-shop ap-pli-ca-tion where cat-a-log m
 i-croser-
  []
 
 
-Overfull \hbox (0.61775pt too wide) in paragraph at lines 236--238
+Overfull \hbox (0.61775pt too wide) in paragraph at lines 240--242
 \T1/qpl/m/n/12 or-ders. Lo-gin ser-vice, im-ages ser-vice, rec-om-men-da-tions,
  in-voices, etc.
  []
 
-[8] <images/decentralised_data.png, id=292, 760.8425pt x 445.665pt>
+[9] <images/decentralised_data.png, id=437, 760.8425pt x 445.665pt>
 File: images/decentralised_data.png Graphic file (type png)
 
 <use images/decentralised_data.png>
-Package pdftex.def Info: images/decentralised_data.png used on input line 244.
+Package pdftex.def Info: images/decentralised_data.png used on input line 248.
 (pdftex.def)             Requested size: 361.34999pt x 211.66586pt.
- [9pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
-}) has been already used, duplicate ignored
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.251 
+l.255 
        <./images/decentralised_data.png>]
-Overfull \hbox (1.55286pt too wide) in paragraph at lines 259--260
+Overfull \hbox (1.55286pt too wide) in paragraph at lines 263--264
 []\T1/qpl/m/n/12 A mi-croser-vices should also de-grade grace-fully. Which mean
 s that
  []
 
 
-Overfull \hbox (3.26976pt too wide) in paragraph at lines 265--266
+Overfull \hbox (3.26976pt too wide) in paragraph at lines 269--270
 []\T1/qpl/m/n/12 Some are tak-ing things even fur-ther and ad-vo-cate us-ing a 
 message-
  []
 
 
-Overfull \hbox (2.5618pt too wide) in paragraph at lines 265--266
+Overfull \hbox (2.5618pt too wide) in paragraph at lines 269--270
 \T1/qpl/m/n/12 oriented ap-proach for com-mu-ni-ca-tion be-tween mi-croser-vice
 s. In-stead
  []
 
 
-Overfull \hbox (19.21777pt too wide) in paragraph at lines 265--266
+Overfull \hbox (19.21777pt too wide) in paragraph at lines 269--270
 \T1/qpl/m/n/12 points, mi-croser-vices ex-pose gen-eral entry-point for send-in
 g task-specific
  []
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
 [][][][]\T1/qpl/m/n/10 Continous in-te-gra-tion by Mar-tin Fowler []$\T1/zi4/m/
 n/10 https : / / martinfowler . com /
  []
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 280.
+(hyperref)                than one, level fixed on input line 284.
 
-LaTeX Font Info:    Try loading font information for TS1+qpl on input line 280.
+LaTeX Font Info:    Try loading font information for TS1+qpl on input line 284.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/tex-gyre/ts1qpl.fd
 File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
-) [11]
-Overfull \hbox (3.72581pt too wide) in paragraph at lines 290--292
+) [12]
+Overfull \hbox (3.72581pt too wide) in paragraph at lines 294--296
 \T1/qpl/m/n/12 Microservices ar-chi-tec-ture en-cour-ages push-ing com-mon con-
 cerns like
  []
 
-[12]
-Overfull \hbox (28.98955pt too wide) in paragraph at lines 307--309
+[13]
+Overfull \hbox (28.98955pt too wide) in paragraph at lines 311--313
 []$\T1/zi4/m/n/12 http : / / stackoverflow . com / questions / 25501098 / diffe
 rence -[] between -[]
  []
 
-[13]
+[14]
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 319.
+(hyperref)                than one, level fixed on input line 323.
 
 
-Overfull \hbox (5.92883pt too wide) in paragraph at lines 320--321
+Overfull \hbox (5.92883pt too wide) in paragraph at lines 324--325
 []\T1/qpl/b/n/12 Programming style: \T1/qpl/m/n/12 SOA en-cour-ages im-per-a-ti
 ve pro-gram-ming,
  []
 
 
-Overfull \hbox (16.3448pt too wide) in paragraph at lines 321--322
+Overfull \hbox (16.3448pt too wide) in paragraph at lines 325--326
 []\T1/qpl/b/n/12 Database: \T1/qpl/m/n/12 SOA mod-els tend to have an out-sized
  re-la-tion database,
  []
 
 
-Overfull \hbox (23.47174pt too wide) in paragraph at lines 321--322
+Overfull \hbox (23.47174pt too wide) in paragraph at lines 325--326
 \T1/qpl/m/n/12 while mi-croser-vices fre-quently use NoSQL or micro-SQL databas
 es
  []
 
 
-Overfull \hbox (1.08568pt too wide) in paragraph at lines 329--330
+Overfull \hbox (1.08568pt too wide) in paragraph at lines 333--334
 \T1/qpl/m/n/12 Gov-ern-ment Dig-i-tal Ser-vice, realestate.com.au, For-ward, Tw
 it-ter, Pay-
  []
 
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 333.
+(hyperref)                than one, level fixed on input line 337.
 
 
-Overfull \hbox (1.67381pt too wide) in paragraph at lines 335--336
+Overfull \hbox (1.67381pt too wide) in paragraph at lines 339--340
 \T1/qpl/m/n/12 Microservices tackle the mono-liths spe-cific com-plex-ity in it
 s tight cou-
  []
 
-[14]
-Overfull \hbox (5.66989pt too wide) in paragraph at lines 337--338
+[15]
+Overfull \hbox (5.66989pt too wide) in paragraph at lines 341--342
 []\T1/qpl/m/n/12 When the mon-strous mono-lithic ap-pli-ca-tion is bro-ken up i
 nto man-
  []
 
-[15] <images/fast_fish.png, id=347, 1570.86874pt x 482.80376pt>
+[16] <images/fast_fish.png, id=492, 1570.86874pt x 482.80376pt>
 File: images/fast_fish.png Graphic file (type png)
 
 <use images/fast_fish.png>
-Package pdftex.def Info: images/fast_fish.png used on input line 354.
+Package pdftex.def Info: images/fast_fish.png used on input line 358.
 (pdftex.def)             Requested size: 361.34999pt x 111.05725pt.
- [16pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+ [17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.367 
+l.371 
        <./images/fast_fish.png>]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 378.
+(hyperref)                than one, level fixed on input line 382.
 
 
 Overfull \vbox (9.49817pt too high) has occurred while \output is active []
 
 
-[17] [18]
+[18] [19]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 406.
+(hyperref)                than one, level fixed on input line 410.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\newline' on input line 406.
+(hyperref)                removing `\newline' on input line 410.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\newline' on input line 406.
+(hyperref)                removing `\newline' on input line 410.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 406--407
+Underfull \hbox (badness 10000) in paragraph at lines 410--411
 
  []
 
-<images/complexity_productivity.png, id=379, 677.1699pt x 532.6299pt>
+<images/complexity_productivity.png, id=524, 677.1699pt x 532.6299pt>
 File: images/complexity_productivity.png Graphic file (type png)
 
 <use images/complexity_productivity.png>
 Package pdftex.def Info: images/complexity_productivity.png used on input line 
-413.
+417.
 (pdftex.def)             Requested size: 361.34999pt x 284.21866pt.
- [19] [20pdfTeX warning (ext4): destination with the same identifier (name{figu
+ [20] [21pdfTeX warning (ext4): destination with the same identifier (name{figu
 re.2.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.429 T
-       he reason microservice architecture is financially and operationally ...
- <./images/complexity_productivity.png>]
-Overfull \hbox (11.58586pt too wide) in paragraph at lines 429--430
+l.430 
+       <./images/complexity_productivity.png>]
+Overfull \hbox (11.58586pt too wide) in paragraph at lines 431--432
 []\T1/qpl/m/n/12 The rea-son mi-croser-vice ar-chi-tec-ture is fi-nan-cially an
 d op-er-a-tionally
  []
 
-[21]
+
+Overfull \hbox (3.3178pt too wide) in paragraph at lines 431--432
+\T1/qpl/m/n/12 chines, con-tain-ers vir-tu-al-ize the op-er-at-ing sys-tem ker-
+nel, not the hard-
+ []
+
+<images/virtual_machines_vs_containers.png, id=543, 1019.81pt x 559.08875pt>
+File: images/virtual_machines_vs_containers.png Graphic file (type png)
+
+<use images/virtual_machines_vs_containers.png>
+Package pdftex.def Info: images/virtual_machines_vs_containers.png used on inpu
+t line 438.
+(pdftex.def)             Requested size: 361.34999pt x 198.10678pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 442--442
+[][][][]\T1/qpl/m/n/10 Source: []$\T1/zi4/m/n/10 http : / / searchservervirtual
+ization . techtarget . com / answer /
+ []
+
+[22pdfTeX warning (ext4): destination with the same identifier (name{figure.2.6
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.444 H
+       owever Docker alone only enables us to deploy and manage containers w...
+ <./images/virtual_machines_vs_containers.png>]
+
+LaTeX Warning: Citation `cdi_tutorial' on page 23 undefined on input line 451.
+
+
+Overfull \vbox (4.22227pt too high) has occurred while \output is active []
+
+
+[23]
+Overfull \hbox (3.98991pt too wide) in paragraph at lines 463--464
+\T1/qpl/m/n/12 pro-vides sim-ple annotation-based con-fig-u-ra-tion. @Cached fo
+r caching
+ []
+
+[24]
+Overfull \hbox (0.58167pt too wide) in paragraph at lines 466--467
+\T1/qpl/m/n/12 nect-ing of mi-croser-vices to Camel[]$\T1/zi4/m/n/12 http : / /
+ camel . apache . org/$[] \T1/qpl/m/n/12 routes,
+ []
+
+[25]
 Chapter 3.
-(./thesis.bbl [22
+
+Overfull \hbox (0.13776pt too wide) in paragraph at lines 477--478
+\T1/qpl/m/n/12 ning at the same time on dif-fer-ent ma-chines across dif-fer-en
+t net-works.
+ []
+
+
+LaTeX Warning: Citation `ms_patterns' on page 26 undefined on input line 481.
+
+[26
+
+] <images/observability.jpg, id=596, 237.88875pt x 277.035pt>
+File: images/observability.jpg Graphic file (type jpg)
+
+<use images/observability.jpg>
+Package pdftex.def Info: images/observability.jpg used on input line 486.
+(pdftex.def)             Requested size: 237.88815pt x 277.03432pt.
+
+
+LaTeX Warning: Citation `ms_patterns' on page 27 undefined on input line 487.
+
+[27pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.495 
+       <./images/observability.jpg>]
+Overfull \hbox (0.5458pt too wide) in paragraph at lines 501--502
+\T1/qpl/m/n/12 Tracing helps us un-der-stand the be-hav-ior of our ap-pli-ca-ti
+on. Re-quests
+ []
+
+
+Underfull \vbox (badness 2119) has occurred while \output is active []
+
+ [28]
+Overfull \hbox (2.29774pt too wide) in paragraph at lines 524--525
+\T1/qpl/m/n/12 duplicates, fil-ters the ex-pected ones and dis-plays the prob-l
+em-atic ones
+ []
+
+[29]
+Overfull \hbox (1.13373pt too wide) in paragraph at lines 531--532
+\T1/qpl/m/n/12 so-lu-tions, which ar-guably do a bet-ter job as more ver-sa-til
+e tools. These
+ []
+
+
+Overfull \hbox (10.02579pt too wide) in paragraph at lines 531--532
+\T1/qpl/m/n/12 con-tainer sched-ulers, pro-gram-ming lan-guages, frame-works, d
+atabases,
+ []
+
+[30]
+Overfull \hbox (9.18587pt too wide) in paragraph at lines 543--544
+[]\T1/qpl/m/it/12 Spans \T1/qpl/m/n/12 can start other \T1/qpl/m/it/12 spans \T
+1/qpl/m/n/12 in se-rial or par-al-lel way, which is achieved
+ []
+
+<images/opentracing2.png, id=621, 471.7625pt x 265.99374pt>
+File: images/opentracing2.png Graphic file (type png)
+
+<use images/opentracing2.png>
+Package pdftex.def Info: images/opentracing2.png used on input line 550.
+(pdftex.def)             Requested size: 361.34999pt x 203.74431pt.
+
+
+LaTeX Warning: Citation `opentracing' on page 31 undefined on input line 551.
+
+
+Overfull \vbox (2.03389pt too high) has occurred while \output is active []
+
+
+[31]
+Overfull \hbox (1.60889pt too wide) in paragraph at lines 559--560
+[]\T1/qpl/b/n/12 extract(Format<C> for-mat, C car-rier) \T1/qpl/m/n/12 - for ex
+-tract-ing that \T1/qpl/m/it/12 Span-
+ []
+
+
+Overfull \hbox (2.6087pt too wide) in paragraph at lines 562--563
+\T1/qpl/m/n/12 calls be-tween mi-croser-vices through var-i-ous means like REST
+ re-quest,
+ []
+
+[32pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.563 
+       <./images/opentracing2.png>]
+
+LaTeX Warning: Citation `opentracing_spec' on page 33 undefined on input line 5
+71.
+
+
+Overfull \hbox (5.0217pt too wide) in paragraph at lines 571--572
+[]\T1/qpl/m/n/12 Logs are mostly used to store tracer im-ple-men-ta-tion spe-ci
+fic events,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--582
+[][]
+ []
+
+
+Overfull \hbox (16.73994pt too wide) in paragraph at lines 575--586
+[]  
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33]
+Underfull \vbox (badness 4303) has occurred while \output is active []
+
+ [34]
+
+LaTeX Warning: Citation `metrics' on page 35 undefined on input line 600.
+
+
+Overfull \hbox (20.97786pt too wide) in paragraph at lines 604--605
+[]\T1/qpl/b/n/12 Counter \T1/qpl/m/n/12 - a sim-ple in-te-ger met-ric, pro-vide
+s \T1/qpl/m/it/12 inc(value) \T1/qpl/m/n/12 and \T1/qpl/m/it/12 dec(value)
+ []
+
+[35]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 611.
+
+Underfull \hbox (badness 10000) in paragraph at lines 635--636
+
+ []
+
+
+Underfull \vbox (badness 1571) has occurred while \output is active []
+
+ [36]
+Overfull \hbox (0.6378pt too wide) in paragraph at lines 646--647
+[]\T1/qpl/b/n/12 Carbon \T1/qpl/m/n/12 - a high-performance ser-vice that lis-t
+ens for time-series
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 651--652
+
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+zi4 on input line 655.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
+File: ts1zi4.fd 2016/12/29 TS1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
+(Font)              scaled to size 12.35999pt on input line 655.
+ [37]
+[38]
+Chapter 4.
+
+Overfull \hbox (3.29378pt too wide) in paragraph at lines 669--670
+\T1/qpl/m/n/12 Since there are some good mon-i-tor-ing tools and li-braries al-
+ready avail-
+ []
+
+
+Overfull \hbox (10.92575pt too wide) in paragraph at lines 676--677
+\T1/qpl/m/n/12 Open-Trac-ing with some use-ful con-tri-bu-tion projects man-age
+d by Open-
+ []
+
+
+Overfull \hbox (3.32996pt too wide) in paragraph at lines 678--679
+\T1/qpl/m/n/12 tions \T1/qpl/m/it/12 buildSpan(name)\T1/qpl/m/n/12 , \T1/qpl/m/
+it/12 in-ject(spanContext) \T1/qpl/m/n/12 and \T1/qpl/m/it/12 ex-tract(spanCont
+ext) \T1/qpl/m/n/12 then
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 681--681
+[][][][][]$\T1/zi4/m/n/10 https : / / docs . oracle . com / javase / 7 / docs /
+ api / java / lang / ThreadLocal .
+ []
+
+[39
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 683--685
+
+ []
+
+LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
+(Font)              scaled to size 10.29999pt on input line 687.
+
+Overfull \hbox (0.16174pt too wide) in paragraph at lines 707--708
+\T1/qpl/m/n/12 the so-lu-tion so it doesn't add any de-pen-dency be-tween provi
+der mod-
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
+[][][][][]$\T1/zi4/m/n/10 https : / / docs . oracle . com / javaee / 7 / api / 
+javax / ws / rs / container /
+ []
+
+
+Overfull \hbox (13.18185pt too wide) in paragraph at lines 709--710
+\T1/qpl/m/n/12 Ware provider ini-tial-iza-tion phase \T1/qpl/m/it/12 Open-Trac-
+ing-Mi-croser-vi-ce-Provider \T1/qpl/m/n/12 adds
+ []
+
+
+Overfull \hbox (7.86584pt too wide) in paragraph at lines 711--712
+\T1/qpl/m/it/12 tRe-spon-se-Filter \T1/qpl/m/n/12 im-ple-men-ta-tion that au-to
+-mat-i-cally start and fin-ish client
+ []
+
+
+Overfull \vbox (1.29994pt too high) has occurred while \output is active []
+
+
+[41]
+Overfull \hbox (1.4299pt too wide) in paragraph at lines 762--763
+[]\T1/qpl/b/n/12 silverware.metrics.console.interval \T1/qpl/m/n/12 - if set wi
+th num-ber of sec-
+ []
+
+[42]
+Overfull \hbox (27.54193pt too wide) in paragraph at lines 765--766
+[]\T1/qpl/b/n/12 silverware.metrics.graphite.hostname \T1/qpl/m/n/12 - host-nam
+e of the Graphite's
+ []
+
+
+Overfull \hbox (4.5298pt too wide) in paragraph at lines 774--775
+[]\T1/qpl/m/it/12 Metrics \T1/qpl/m/n/12 static util-ity class serves as a shor
+t-cut to ac-cess-ing the global
+ []
+
+
+Overfull \hbox (1.02596pt too wide) in paragraph at lines 774--775
+\T1/qpl/m/n/12 cre-ation of \T1/qpl/m/it/12 HealthCheck \T1/qpl/m/n/12 through 
+\T1/qpl/m/it/12 reg-is-ter-HealthCheck(name, healthRe-sult-
+ []
+
+
+Overfull \hbox (21.62987pt too wide) in paragraph at lines 774--775
+\T1/qpl/m/it/12 Sup-plier)\T1/qpl/m/n/12 , that takes a health check name and \
+T1/qpl/m/it/12 Sup-plier<HealthCheck.Result>
+ []
+
+[43]
+Underfull \hbox (badness 10000) in paragraph at lines 776--778
+
+ []
+
+
+Overfull \hbox (8.7778pt too wide) in paragraph at lines 787--788
+\T1/qpl/m/n/12 ing \T1/qpl/m/it/12 Mock-Tracer \T1/qpl/m/n/12 class to cre-ate 
+a \T1/qpl/m/it/12 Trace \T1/qpl/m/n/12 im-ple-men-ta-tion that records traced
+ []
+
+
+Overfull \hbox (1.90195pt too wide) in paragraph at lines 789--790
+[]\T1/qpl/m/it/12 MetricsMicroserviceProviderTest \T1/qpl/m/n/12 tests the ini-
+tial-iza-tion of \T1/qpl/m/it/12 Met-ric-sMi-
+ []
+
+[44]
+Chapter 5.
+
+Overfull \hbox (12.20769pt too wide) in paragraph at lines 797--798
+[]\T1/qpl/m/n/12 Quickstart uses a va-ri-ety of providers: CDI provider, HTTP p
+rovider,
+ []
+
+
+Overfull \hbox (6.67784pt too wide) in paragraph at lines 797--798
+\T1/qpl/m/it/12 er-sClus-terSer-vice \T1/qpl/m/n/12 in-ter-con-nected through C
+DI. Lastly \T1/qpl/m/it/12 Work-er-sClus-terSer-
+ []
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 801.
+
+
+Overfull \hbox (10.85391pt too wide) in paragraph at lines 805--806
+\T1/qpl/m/n/12 able at \T1/qpl/m/it/12 http://localhost/ \T1/qpl/m/n/12 and Gra
+fana web in-ter-face at \T1/qpl/m/it/12 http://localhost:3000/\T1/qpl/m/n/12 : 
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 805--806
+
+ []
+
+
+Overfull \hbox (3.52196pt too wide) in paragraph at lines 812--813
+\T1/qpl/m/n/12 pro-vid-ing a con-fig-u-ra-tion file in-cluded in at-tach-ment, 
+which will spin-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 812--813
+
+ []
+
+[45
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 818--819
+
+ []
+
+<images/numbers2.png, id=804, 636.3775pt x 892.33376pt>
+File: images/numbers2.png Graphic file (type png)
+
+<use images/numbers2.png>
+Package pdftex.def Info: images/numbers2.png used on input line 837.
+(pdftex.def)             Requested size: 361.34999pt x 506.68846pt.
+
+
+LaTeX Warning: Float too large for page by 2.57245pt on input line 839.
+
+[46] [47pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.5.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.841 \chapter
+              {Conclusion} <./images/numbers2.png>]
+Chapter 6.
+
+Overfull \hbox (3.302pt too wide) in paragraph at lines 851--852
+\T1/qpl/m/n/12 tion in \T1/qpl/m/it/12 metrics-microservice-provider \T1/qpl/m/
+n/12 and \T1/qpl/m/it/12 opentracing-microservice-
+ []
+
+(./thesis.bbl [48
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 47--49
@@ -1428,38 +1813,47 @@ ted Ar-chi-tec-ture\T1/qpl/m/n/12 .
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 443.
- [23
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 859.
+ [49
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 443.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 859.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 443.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 443.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 859.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 859.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 09D3B72C0801976B087F0CAC1C470A11;2530.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 443.
+(rerunfilecheck)             Checksum: 2C6C17C97C0EB4F549C67C0A40E4BC25;4469.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 859.
  ) 
 Here is how much of TeX's memory you used:
- 12777 strings out of 493013
- 200624 string characters out of 6133328
- 360541 words of memory out of 5000000
- 15907 multiletter control sequences out of 15000+600000
- 51276 words of font info for 60 fonts, out of 8000000 for 9000
+ 13415 strings out of 493013
+ 207928 string characters out of 6133328
+ 410920 words of memory out of 5000000
+ 16378 multiletter control sequences out of 15000+600000
+ 51869 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,8n,72p,1193b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
-local/texlive/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/loc
-al/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc} <./fi-logo600.514
-pk>{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}</u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4
-r.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on thesis.pdf (30 pages, 774793 bytes).
+ 44i,9n,92p,1193b,1964s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{
+/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/usr
+/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/t
+exlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc} <./fi-logo600.514pk>{
+/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc}</usr/l
+ocal/texlive/2016/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pf
+b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/inconsolata/Inconsolat
+a-zi4r.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplb
+.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on thesis.pdf (56 pages, 1020359 bytes).
 PDF statistics:
- 509 PDF objects out of 1000 (max. 8388607)
- 402 compressed objects within 5 object streams
- 100 named destinations out of 1000 (max. 500000)
- 318 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 969 PDF objects out of 1000 (max. 8388607)
+ 825 compressed objects within 9 object streams
+ 256 named destinations out of 1000 (max. 500000)
+ 562 words of extra memory for PDF output out of 10000 (max. 10000000)
 
