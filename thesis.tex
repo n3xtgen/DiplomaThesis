@@ -98,6 +98,8 @@
 \thesisadvisor{Mgr. Martin Večeřa}   % Your advisor
 
 \begin{document}
+\sloppy
+
   \FrontMatter                    % The front matter
     \ThesisTitlePage                % The title page
     \begin{ThesisDeclaration}       % The declaration
@@ -105,14 +107,15 @@
       \AdvisorName
     \end{ThesisDeclaration}
     \begin{ThesisThanks}            % The acknowledgements (optional)
-      Foremost I would like to thank my family, which generously supported me throughout my whole study, even if it's been hard with me sometimes. Also I would like to thank my uncle Zdenek for introducing me to programming, which became my hobby and because of it I chose to study this university. Then I would like to thank my thesis advisor Martin Večeřa for having a meeting with me and helping me whenever I needed. And lastly my good friend Radek Koubský, who also helped me a few times with understanding the SilverWare platform.
+      Foremost I would like to thank my family, mom, dad, grandmother and grandfather and my sister, who all generously supported me throughout my whole study, even if it's been hard with me sometimes. Also I would like to thank my uncle Zdenek for introducing me to programming, which became my hobby and because of it I chose to study this field of knowledge. Then I would like to thank my thesis advisor Martin Večeřa for having a meeting with me and helping me whenever I needed. And lastly my good friend Radek Koubský, who also helped me a few times with understanding the SilverWare platform.
     \end{ThesisThanks}
     \begin{ThesisAbstract}          % The abstract
-This thesis introduces the microservice architecture, its benefits and drawback and how it differs from the common monolithic architecture. The thesis consequently presents SilverWare microservice platform and its 
-The aim of this thesis is to design and implement monitoring extension for microservices platform Silverware. At the beginning I study current most known microservices platforms and research how they implemented their monitoring part. Then I come up with possible monitoring solution for SilverWare that would be appropriate for the scope of this thesis. Lastly I implement this solution using Hawtio platform as a front-end.
+This thesis introduces the microservice architecture, its benefits and drawbacks and how it differs from the common monolithic architecture, followed by quick presentation of SilverWare microservice platform.
+
+Consequently it presents the basics of monitoring microservices and some of the most popular open-source monitoring tools, followed by my implementation of monitoring extension for SilverWare platform.
     \end{ThesisAbstract}
     \begin{ThesisKeyWords}          % The keywords
-      DOPLNIT
+       Microservice architecture, monitoring, containers, Docker, SilverWare OpenTracing, Metrics, Graphite, Zipkin 
     \end{ThesisKeyWords}
     \tableofcontents                % The table of contents
 %   \listoftables                   % The list of tables (optional)
@@ -127,7 +130,7 @@ My overall goal was to explore very young realm of services and applications wri
 
 Because this field was completely new to me, I first needed to read some introduction books to even get a grasp of what microservices are, why is everyone so excited about them, what are their core principles, what can they offer and what challenges they come with.
 
-Afterwards I learned basics regarding containerization of applications and their usage with focus on OpenShift/Kubernetes/Docker platform which provide fitting environment for microservice applications and are very often mentioned in various articles. Then I briefly tried out contemporary microservice frameworks and platforms and finally got my hands on SilverWare which code and internal workings I needed to study thoroughly so I could develop suitable extension for it.
+Afterwards I learned basics of using containers in applications with focus on OpenShift/Kubernetes/Docker platform, which provide a fitting environment for microservice applications and are very often mentioned in various articles. Then I briefly tried out contemporary microservice frameworks and platforms and finally got my hands on SilverWare which code and internal workings I needed to study thoroughly so I could develop a suitable extension for it.
 
 When I had sufficient general insight into the microservices landscape I steered my attention towards actual monitoring issues of microservices and looked for appropriate standards and solutions which I could integrate into the SilverWare microservice framework.
 
@@ -161,11 +164,11 @@ A microservice  is  a  minimal  independent  process  interacting via messages. 
 
 Microservice architecture is an approach to modularization of software. Modularization itself is nothing new. For quite some time large systems have been divided into smaller components to facilitate the implementation, understanding and further development of the software. However microservice architecture utilizes experience gained by developers over the years to take the modularization to a new level.
 
-Microservices-based architecture is a development concept which advocates decomposing business domain models of a system into smaller, consistent, bounded-contexts implemented by a collection of small, isolated services. Each of these services owns their data, and is independently scalable and resilient to failure. These small services or so called microservices integrate with each other in order to form a united system that is far more flexible than the typical monolithic enterprise systems we build today. \cite{rma}
+Microservice based architecture is a development concept which advocates decomposing business domain models of a system into smaller, consistent, bounded-contexts implemented by a collection of small, isolated services. Each of these services owns their data, and is independently scalable and resilient to failure. These small services or so-called microservices integrate with each other in order to form a united system that is far more flexible than the typical monolithic enterprise systems we build today. \cite{rma}
 
 Previous technical limits held us back from implementing the concepts embedded within the microservices: single machines running single core processors, slow networks, expensive disks, expensive memory, and organizations structured as monoliths. But now the technology has matured and enabled us to take the development of big enterprise software to the next level.
 
-So to recapitulate - the basic idea of microservices is instead of building a single monstrous, monolithic application we should split the application into a set of smaller, interconnected services each of which takes care of part of the functionality provided by the system and is easily replaceable.
+So to recapitulate, the basic idea of microservices is: Instead of building a single monstrous, monolithic application we should split the application into a set of smaller interconnected services, each taking care of part of the functionality provided by the system and being easily replaceable.
 
 \section{Breaking the monolith}
 
@@ -177,14 +180,15 @@ Traditional enterprise systems are designed as monoliths -- all-in-one, all-or-n
 A monolith is a software application composed of modules that are not independent of the application to which they belong. \cite{mytat} 
 \end{definition}
 
-Evergrowing monoliths can quickly turn into nightmares that stifle innovation, progress, and joy. Negative side effects of monoliths can be catastrophic for a company. They can derogate morale of a team, discourage talented people from entering the team, cause high alternation of employees which in turn causes outflow of people that already understood the complex system which further deepens the lack of understanding of monolith. All this can in the worst cases even lead to the failure of a company due to inability to react to change. \cite{rma}
+Evergrowing monoliths can quickly turn into nightmares that stifle innovation, progress, and joy. Negative side effects of monoliths can be catastrophic for a company. They can derogate morale of a team, discourage talented people from entering the team, cause high alternation of employees which in turn causes outflow of people that already understood the complex system which further deepens the lack of understanding of monolith. All this can, in the worst cases, even lead to the failure of a company due to inability to react to change. \cite{rma}
+\bigskip
 
-\paragraph{Enterprise applications are often composed of three main parts:}
+\noindent\textbf{Enterprise applications are often composed of three main parts:}
 
 \begin{enumerate}
-   \item a client-side application - which can either be a webpage running in a  browser on the user's machine communicating with the webserver using HTTP  protocol or a smartphone applications communicating using REST protocol
+   \item a client-side application - which can either be a webpage running in a  browser on the user's machine, communicating with the webserver using HTTP  protocol, or a smartphone applications communicating using REST protocol
    \item a server-side application - consisting of webserver coupled with all business application logic
-   \item a database - consisting of many tables inside a common, usually relational, database which often resides on the same machine
+   \item a database - consisting of many tables inside a common, usually relational, database that often resides on the same machine
 \end{enumerate}
 
 \begin{figure}[ht!]
@@ -196,9 +200,9 @@ Evergrowing monoliths can quickly turn into nightmares that stifle innovation, p
 
 \footnotetext{Source: \url{https://www.nginx.com/blog/introduction-to-microservices/}}
 
-The server-side application handles all client requests, executes business logic, retrieves and update data from the database, and select and populate HTML views to be sent to the browser. This server-side application is a monolith (as shown in \ref{monolithic_application}) - a single logical executable. Any changes to the system involve building and deploying a new version of the application to the server. \cite{mf}
+The server-side application handles all client requests, executes business logic, retrieves and update data from the database, and select and populate HTML views to be sent to the browser. This server-side application is a monolith (as shown in picture \ref{monolithic_application}) - a single logical executable. Any changes to the system involve building and deploying a new version of the application to the server. \cite{mf}
 
-Monolithic application are typically developed by one, potentially big, team. All requests for change are aggregated into a single issue-tracking system from which the members of team pick their tasks. Likewise the whole team is sharing application's code-base through a single repository. When members pick their task, they pull current version of the code-base, compile it and start a local development instance on their machine. When they are done with their tasks, they merge their individual changes to the shared repository, thus conflicting changes may be common. In certain time current state of the code-base is marked with a version number and then compiled and deployed to testing environment where it is tested and cultivated for some time before it is finally deployed to production.
+Monolithic application are typically developed by one, potentially big, team. All requests for change are aggregated into a single issue-tracking system from which the members of team pick their tasks. Likewise the whole team is sharing application's code-base through a single repository. When members pick their task, they pull current version of the code-base, compile it and start a local development instance on their machine. When they are done with their tasks, they merge their individual changes to the shared repository, thus conflicting changes may be common. In certain time current state of the code-base is marked with a version number and then compiled and deployed to the testing environment where it is tested and cultivated for some time before it is finally deployed to production.
 
 Every change in large monolith can be cumbersome. Monoliths allow programmers to strongly couple their code. Change in one part of the application can immediately break something different or have unforseen consequences later. Refactoring of code becomes a pain.
 
@@ -206,11 +210,11 @@ Deployment of monolithic applications can be demanding due to conflicting  requi
 
 Monoliths also bring unnecessary overhead when scaling beyond a single machine, this is called horizontal scaling. There are two types of scaling: vertical and horizontal. Vertical scaling means that we are allocating more computing resources within a given machine to the application or you are upgrading the machine itself, this is the ordinary type of scaling. However, vertical scaling is always limited by technical limits of contemporary computer components. Furthermore price of those components rises exponentially together with their performance.
 
-On the other hand with horizontal scaling we are running the same application on multiple machines at once. This solution also necessitate the use of intermediate machine called load-balancer which splits the incoming requests between all the running applications on different machines. The downside of monolith is that even if the bottleneck of your application lies in a single component, you have to run multiple instances of the whole thing claiming more resources. Another problem is even if we utilize horizontal scaling, all the running monoliths share a single database, which then becomes bottleneck by itself.
+On the other hand with horizontal scaling we are running the same application on multiple machines at once. This solution also necessitate the use of intermediate machine called load-balancer which splits the incoming requests between all running applications on different machines. The downside of monolith is that even if the bottleneck of our application lies in a single component, we have to run multiple instances of the whole thing claiming more resources. Another problem is even if we utilize horizontal scaling, all the running monoliths share a single database, which then becomes bottleneck by itself.
 
-Now when we look at the microservice architecture we will see a very contrasting mindset. Microservice architecture advocates slicing the monolithic application into well bounded, smaller application parts - microservices that can each provide a part of the business value on their own. This process has been termed as \textit{"breaking the monolith"}. By providing business oriented APIs to user a collection of microservices then substitute the monolith.
+Now when we look at the microservice architecture we will see a very contrasting mindset. Microservice architecture advocates slicing the monolithic application into well bounded, smaller application parts - microservices, that can each provide a part of the business value on their own. This process has been termed as \textit{"breaking the monolith"}. By providing business oriented APIs a collection of microservices then substitute the monolith.
 
-As we see in figure \ref{microservice_application}, we broke the application from previous picture into individual components and exposed their APIs through API gateway to client-side applications. Each component can have numerous running copies on different computers (horizontal scaling) and API gateway serves as a load-balancer routing the incoming traffic to them. The only relation between different components is their communication using data exchange accomplished through the APIs they expose. How exactly you slice the business functionality depends on you, but you should try to make the microservices as independent as possible so they limit one another the least.
+As we see in picture \ref{microservice_application}, we broke the application from previous picture into individual components and exposed their APIs through API gateway to client-side applications. Each component can have numerous running copies on different computers (horizontal scaling) and API gateway serves as a load-balancer routing the incoming traffic to them. The only relation between different components is their communication using data exchange accomplished through the APIs they expose. How exactly you slice the business functionality depends on you, but you should try to make the microservices as independent as possible so they limit one another the least.
 
 \begin{figure}[ht!]
 	\label{microservice_application}
@@ -221,13 +225,13 @@ As we see in figure \ref{microservice_application}, we broke the application fro
 
 \footnotetext{Source: \url{https://www.nginx.com/blog/introduction-to-microservices/}}
 
-Microservices architecture is not precisely defined in any book, it is not a standard. It is just a set of practices and recommendation that has been put together over time by companies and experts that were facing common problems when building large scale applications. There are key principles that microservice application should stick to.
+Microservices architecture is not precisely defined in any book, it is not a standard. It is just a set of practices and recommendations that have been put together over time by companies and experts, who were facing common problems when building large scale applications. There are key principles that microservice application should stick to:
 
 \subsection{Single responsibility principle}
 
 One of the key principles is that a microservice should do only one thing and it should do it the best it can. This principle is inspired by the philosophy of UNIX where there are many small programs, each of them serves single small purpose and they work together to complete more complicated tasks.
 
-This attitude contributes to microservices staying simple and seizable. They can be maintained by small teams, composed of only a handful of people, that have very good understanding of all aspects of the microservice. Code-base remains small, easy to change and to refactor.
+This attitude contributes to microservices staying simple and seizable. They can be maintained by small teams, composed of only a handful of people, who have very good understanding of all aspects of the microservice. Code-base remains small, easy to change and to refactor.
 
 \subsection{Isolation}
 
@@ -237,10 +241,10 @@ Microservices should be as isolated as possible. Isolation means that there are 
 
 Part of the isolation principle is data ownership. Every microservice should be responsible for its own data and be able to manipulate it how it deems fit and even change it completely disregarding other microservices. Any other microservice can access these data only through the respective microservice that owns it.
 
-Example of this may be e-shop application where catalog microservice owns only data regarding all offered goods like their id, name, price, description and all kinds of attributes. Then we would have storage microservice that would own data quantity of each item in our stock. Cart microservice which would keep track of users shopping carts. Orders microservice which would take care of customer orders. Login service, images service, recommendations, invoices, etc.
-Every microservice would store its data in its own database or hold it in cache. This principle is necessary so that one shared database would not become another bottleneck of the application and single point of failure.
+Example of this may be e-shop application, where catalog microservice owns only data regarding all offered goods like their id, name, price, description and all kinds of attributes. Then we would have storage microservice that would own data quantity of each item in our stock. Cart microservice which would keep track of users shopping carts. Orders microservice which would take care of customer orders. Login service, images service, recommendations, invoices, etc.
+Every microservice would store its data in its own database or hold it in a cache. This principle is necessary so that one shared database would not become another bottleneck of the application and single point of failure.
 
-In picture \ref{decentralised_data} we can see difference in data handling between monolithic application and microservice application. On the left side all-inclusive application accesses one big database, performs some business functionality on it and returns the overall result to the user usually in the form of complete web page. On the right side individual microservices serve their respective data either to some front-end web server application or directly to client-side AJAX\footnote{Asynchronous Javascript and XML \url{https://en.wikipedia.org/wiki/Ajax_(programming)}} application or smartphone app. We can also see that there are two instances of the same microservice sharing one database.
+In picture \ref{decentralised_data} we can see difference in data handling between monolithic application and microservice application. On the left side all-inclusive application accesses one big database, performs some business functionality on it and returns the overall result to the user usually in the form of complete web page. On the right side individual microservices serve their respective data either to some front-end web server application or directly to client-side AJAX\footnote{Asynchronous Javascript and XML \url{https://en.wikipedia.org/wiki/Ajax_(programming)}} application or smartphone app. On the right, we can also see that there are two instances of the same microservice sharing one database.
 
 \begin{figure}[ht!]
 	\label{decentralised_data}
@@ -258,7 +262,8 @@ Autonomous microservices open up flexibility around orchestration, scalability a
 \subsection{Resilience}
 
 With previous point ties another characteristic - resilience. Resilience is a capability to cope with unpredictable external changes or errors. A microservice cannot rely on other microservices or components that they will do their job.
-In microservice world that encourages autonomy, there are many things that can go wrong. Instances of microservices start and stop on regular basis. It may even happen that in one moment there are no running instances at all - for example when the whole system is just starting. Other microservice can return errors or unexpectedly stop short in the middle of request. Since microservices are typically deployed across multiple machines in a network, all network problems need to be taken into account.
+
+In microservice world that encourages autonomy, there are many things that can go wrong. Instances of microservices start and stop on regular basis. It may even happen that in one moment there are no running instances of necessary microservice at all - for example when the whole system is just starting. Other microservice can return errors or unexpectedly stop short in the middle of a request. Since microservices are typically deployed across multiple machines in a network, all network problems need to be taken into account.
 
 A microservices should also degrade gracefully. Which means that if another component it relies on wasn't able to provide its promised service, the reliant microservice gradually cuts some of its functionality but tries to leave the most of it, providing the best possible service it can in any given time.
 
@@ -266,9 +271,9 @@ A microservices should also degrade gracefully. Which means that if another comp
 
 Since microservices complete more complicated tasks only by cooperation, there are heavy demands on communication, both in frequency and volume. Thus communication between microservices must be as light-weight as possible. Communication protocols like SOAP that uses bloated XML format are undesirable. Instead microservices architecture recommends usage of protocols like REST that use shorter JSON format.
 
-Some are taking things even further and advocate using a message-oriented approach for communication between microservices. Instead of sending serialized “objects” of agreed format through given entry-points, microservices expose general entry-point for sending task-specific messages allowing for changes in message content. This further helps to reduce coupling and allows safe refactoring.
-
 For example Netflix relies on even smaller message formats like Apache's Avro or Thrift and Google's Protobuf over TCP/IP for internal communication inside microservice systems. \cite{ma}
+
+Some are taking things even further and advocate using an asynchronous message-oriented approach for communication between microservices. And instead of sending concrete serialized objects of agreed format, they send universal messages allowing for changes in content. This further helps to reduce coupling and allows refactoring.
 
 \subsection{Continuous integration}
 
@@ -276,17 +281,18 @@ For example Netflix relies on even smaller message formats like Apache's Avro or
 Continuous integration is a software development practice where members of team integrate their work multiple times per day and automatic build and test tools check the functionality of the application. \footnote{Continous integration by Martin Fowler \url{https://martinfowler.com/articles/continuousIntegration.html}}
 \end{definition}
 
-The goal of continuous integration is reduction of risk, it protects the development from surprises at the end of the development cycle. Waiting days or weeks to integrate code creates many merge conflicts, hard to fix bugs, diverging code strategies, and duplicated efforts. It also provides helpful feedback for both developers and customers.
+The goal of continuous integration is reduction of risk, it protects the development from surprises at the end of the development cycle. Waiting days or weeks to integrate code creates many merge conflicts, hard to fix bugs, diverging code strategies, and duplicated efforts. Continuous integration provides helpful feedback for both developers and customers.
+\bigskip
 
-\paragraph {Key practices that enable continuous integration are:}
+\noindent\textbf{Key practices that enable continuous integration are:}
 
 \begin{itemize}
 \item \textbf{code-versioning} - use of modern code repositories like Subversion or Git is the standard in all good development practices
 \item \textbf{frequent commits} - developers should commit their changes and checkout changes of others several times a day to reduce conflicts, it is even recommended not to use branching features for every task and work only on master branch
 \item \textbf{automated builds and tests} - each integration (each commit to repository) should trigger an automated self-testing build that verifies the application using unit tests and other means to detect integration errors as soon as possible, it should be easy to see what changes made the build break
 \item \textbf{fast builds} - the main point of CI is to provide rapid feedback, so keeping the build times as short as possible is imperative, luckily small scope and size of microservices favours this
-\item \textbf{prepare to deliver} - after every successful build or at least every day, new version of application should be pushed to testing environment so there is enough time before deploying to production when testers can spot out errors and stakeholders can adjust imperfections
-\item \textbf{testing in clone of production} - having a test environment that is different from production environment can lead to unexpected failures when finally deploying to production, so these two should be as much same as they can be, another solution is to have a pre-production environment
+\item \textbf{prepare to deliver} - after every successful build, or at least every day, new version of application should be pushed to testing environment so there is enough time before deploying to production when testers can spot out errors and stakeholders can adjust imperfections
+\item \textbf{testing in clone of production} - having a test environment that is different from the production environment can lead to unexpected failures when finally deploying to production, so these two should be as much same as they can be, another solution is to have a pre-production environment
 \end{itemize}
 
 \subsection{Utilization of infrastructure}
@@ -304,20 +310,18 @@ Any organization that designs a system (defined broadly) will produce a design w
 
 This finding warns against instinctive pitfall of designing individual microservices and the communication between them based on the preimage of existing teams in the company and their communication.
 
-For example if we had three teams that are specialized respectively on UI, back-end and databases, they would be naturally inclined to develop three microservices - one for serving webpages only acting as a webserver, another executing all business logic and last one for accessing the database. This would be a wrong distribution of responsibilities. Every change in the system would most certainly need modification of all three microservices.
+For example if we had three teams that are specialized respectively on UI, back-end and databases, they would be naturally inclined to develop three microservices - one for serving webpages only acting as a webserver, another executing all business logic and the last one for accessing the database. This would be a wrong distribution of responsibilities. Every change in the system would most certainly need modification of all three microservices.
 
 \section{Microservices vs Service Oriented Architecture}
-
-\url{http://stackoverflow.com/questions/25501098/difference-between-microservices-architecture-and-soa}
-Microservices Flexible Softwar Architecture ma dobry rozdily
 
 Microservice architecture is heavily inspired by service-oriented architecture (SOA). Some say microservices is a specialization of SOA. Service-oriented architecture is an interlink between monolithic systems and microservices. Both MSA and SOA are architecture patterns that place a heavy emphasis on services as the primary architecture component used to implement and perform functionality. However the crucial difference between them is that microservices architecture is a share-as-little-as-possible architecture pattern that places a heavy emphasis on the concept of a bounded context, whereas SOA is a share-as-much-as-possible architecture pattern that places heavy emphasis on abstraction and business functionality reuse. \cite{mvsoa}
 
 SOA's focus on reuse means that one certain function should only exist in one place or that single service should handle it. Where things differ is definition of this function. This is where cohesion comes into play. Cohesion is the degree in which functionality in services belongs together. The highest cohesion is functional cohesion where the services contribute to a well-defined task or business capability. Microservices aim for high (functional) cohesion, whereas SOA uses low (logical) cohesion. Logical cohesion means that services are designed to provide similar tasks. This leads to services such as "data service"  which provides all communication with a database for the whole system. Now imagine the effects of this service going down. All parts of the system that persistently store data to database would stop working. With MSA the intention is to provide all aspects of business capability end-to-end, from data storage to user interface functions. So instead of having a "front-end service" and “data service” we have “customer service” and “shipping service” each with their own front-end and back-end part, including database.
 
 MSA also strives for autonomy which not only means that a microservice should be able to run or function independently, but it also means that a microservice should be able to provide business value on its own.
+\bigskip
 
-\paragraph{Lets summarize the key differences:}
+\noindent\textbf{Lets summarize the key differences:}
 
 \begin{itemize}
 \item \textbf{Communication between services:} SOA usually has more dependent ESB (Enterprise Service Bus), whereas microservices use faster messaging mechanism, usually REST
@@ -330,25 +334,31 @@ MSA also strives for autonomy which not only means that a microservice should be
 
 Now that we have a general idea of what microservices are, we should look at their benefits and pitfalls, and why is the industry so excited about them.
 
-As Martin Fowler points out \cite{mf}, Netflix, eBay, Amazon, the UK Government Digital Service, realestate.com.au, Forward, Twitter, PayPal, Gilt, Bluemix, Soundcloud, The Guardian, and many other large-scale websites and applications have all evolved from monolithic to microservices architecture. So there must be certainly a good reason for these companies to prefer microservices architecture over monolithic architecture in some of their projects.
+As Martin Fowler points out \cite{mf}, Netflix, eBay, Amazon, the UK Government Digital Service, realestate.com.au, Forward, Twitter, PayPal, Gilt, Bluemix, Soundcloud, The Guardian, and many other large-scale websites and applications have all evolved from monolithic to microservices architecture. So there must be certainly a good reason for these companies to prefer microservices architecture over monolithic architecture in some of their projects.\newpage
 
-\paragraph{The Benefits of Microservices}
+\subsection{Benefits of Microservices}
+\bigskip
 
-\subsection{Long-term maintainability}
+\noindent\textbf{Long-term maintainability}
+\bigskip
 
-Microservices tackle the monoliths specific complexity in its tight coupling between individual, great amount of overall knowledge needed to make responsible changes to the system, technology lock-in, growing technology debt and so on.
+Microservices attack the monoliths specific complexity in its tight coupling between individual, great amount of overall knowledge needed to make responsible changes to the system, technology lock-in, growing technology debt and so on.
 
 When the monstrous monolithic application is broken up into manageable chunks it is easier for everyone in the project to work with the application and further maintain it. Maintainability is absolutely critical for success of big long-lasting projects and represents a great risk if not taken into account.
+\bigskip
 
-\subsection{Independent and horizontal scalability}
+\noindent\textbf{Independent and horizontal scalability}
+\bigskip
 
 Evident advantage of microservice architecture is its adaptation to scaling. Isolation and autonomy of a microservice allow us to simultaneously run countless copies of it in addition to running them across different computers in a network.
 
 So for example, if our application has to process computational-intensive task and this task is a responsibility of one of our microservices, we can run that given microservice as many times as we need to satisfy the demand for given task without scaling the whole application. And if one machine is not enough for the task, we can scatter the task on multiple computers.
 
 Horizontal scaling is cheaper than vertical scaling and it renders the system more robust in case of hardware failure of one of the computers. Also readiness to scaling and fast start-up of small microservices allows our application to accommodate sudden spikes of service demand by starting additional instances of given microservice and vice-versa, when the demand falls of, the application can automatically stop superfluous instances to save resources.
+\bigskip
 
-\subsection{Continuous delivery}
+\noindent\textbf{Continuous delivery}
+\bigskip
 
 Acceleration of changes in our everyday world go hand in hand with increasing demands on companies that are facing frequent changes in their areas of business. Nowadays the ability to readily react to these frequent changes is becoming critical competitive advantage. As we can see in picture \ref{fast_fish} taken from Reactive Microservices Architecture \cite{rma}, big mature companies that so far dominated their respective business sector can quickly become prey to their faster, more agile competitors.
 
@@ -370,42 +380,53 @@ So continuous delivery enabled by continuous integration is the ability to quick
 The isolation and autonomy principles empower fast and flexible microservice deployment and upgrade. They make it possible for new versions of microservices to be taken into production independently of changes to others, allowing us to safely roll-out or revert changes incrementally - service by service. What's more we can roll the changes out instance by instance of the same microservice and slowly redirect the traffic to the new version, which effectively means zero downtime. That is a big deal for systems that have very strict availability requirements.
 
 With the flexibility of routing and deployment it is also easy to exercise canary release. Canary release is a technique for reduction of risk, in which you expose new versions only to a fraction of the users at first. You can choose a random sample of users or you can target certain groups of people according to region, age, sex, etc. and get their feedback. And only if those users are happy with the new version, you make the update available to all users.
+\bigskip
 
-\subsection{Technology diversity}
+\noindent\textbf{Technology diversity}
+\bigskip
 
 Since the only relation between individual microservices should be a network communication through an agreed interface that should be language-agnostic, developers can take advantage of technology diversity. This benefit also eliminates long-term commitment to a single technology stack.
 
-It is possible for every microservice to be written in different programming language, use different framework or even be developed for different platform like x64 or ARM. ARM architecture is usually less power consuming, which can be useful in IoT\footnote{Internet of Things - \url{https://en.wikipedia.org/wiki/Internet_of_things}} applications. Each microservice can leverage the use use of database type that is the most suitable for its data, be it relational or non-relational database.
+It is possible for every microservice to be written in different programming language, use different framework or even be developed for different platform like x64 or ARM. ARM architecture is usually less power consuming, which can be useful in IoT\footnote{Internet of Things - \url{https://en.wikipedia.org/wiki/Internet_of_things}} applications. Each microservice can leverage the use use of database type that is the most suitable for its data, be it relational or non-relational database.\newpage
 
-\paragraph{The Drawbacks of Microservices}
+\subsection{Drawbacks of Microservices}
+\bigskip
 
-\subsection{Architecture complexity}
+\noindent\textbf{Architecture complexity}
+\bigskip
 
 While microservices take away the complexity of big monoliths they bring another type of complexity that is inherent in the microservice architecture itself. It arises from the fact microservices are distributed system, so there are many things that need to be taken care of.
 
-The deployment environment is much more complicated. Now there is no application server, to which you simply deploy your WAR file. You need a mature operations team and employ new middleware and tools to manage numerous microservice instances, which are being redeployed regularly.
+The deployment environment is much more complicated. Now there is no application server, to which we simply deploy our WAR file. We need a mature operations team and employ new middleware and tools to manage numerous microservice instances, which are being redeployed regularly.
+\bigskip
 
-\subsection{Network communication}
+\noindent\textbf{Network communication}
+\bigskip
 
-Microservices heavily depend on network communication which always brings many problems to the table. There is no simple invocation of method in different module via language specific call, you have to use remote call to communicate with another microservice.
+Microservices heavily depend on network communication which always brings many problems to the table. There is no simple invocation of method in different module via language specific call, we have to use remote calls to communicate with another microservice.
 
-If all things work perfectly, the network call may take a multitudes of time. Even inter-process network calls between instances on the same machine take substantial amount of time compared to method call inside a single process. So developers need to find a compromise between excessive division of business functionality into individual microservices and its aggregation.
+If all things work perfectly, the network call may take a multitudes of time. Even inter-process network calls between instances on the same machine take substantial amount of time compared to method calls inside a single process. So developers need to find a compromise between excessive division of business functionality into individual microservices and its aggregation.
 
-What's more in network space you never know what can go wrong on the other side or if your message ever reach its destination, so you need to take care of every possibility. This alone brings a massive amount of complexity to microservice architecture. You need to have strong resilient mechanisms in every microservice, implement timeouts and fallbacks, and check incoming data.
+What's more in network space we never know what can go wrong on the other side or if our message ever reach its destination, so we need to take care of every possibility. This alone brings a massive amount of complexity to microservice architecture. We need to have strong resilient mechanisms in every microservice, implement timeouts and fallbacks, and check incoming data.
+\bigskip
 
-\subsection{Data consistency}
+\noindent\textbf{Data consistency}
+\bigskip
 
 Since microservice architecture promotes ownership of data associated to each microservice and not having a single database for everything, data consistency becomes a challenge.
 
 Business transactions that update multiple business entities are fairly common. In microservice architecture these business entities can belong to different microservices. Using distributed transactions should be put to use only for critical data because of the CAP theorem\footnote{\url{https://en.wikipedia.org/wiki/CAP_theorem}}. All other data should do with eventual consistency\footnote{\url{https://en.wikipedia.org/wiki/Eventual_consistency}}.
+\bigskip
 
-\subsection{Testing complexity}
+\noindent\textbf{Testing complexity}
+\bigskip
 
-If we omit unit testing which verifies the workings of internal components and should have the same complexity in both cases, then microservice architecture has more complicated overall testing.
+If we omit unit testing that verifies the workings of internal components and should have the same complexity as in monoliths, then microservice architecture has more complicated overall testing.
 
-In monolithic application with modern frameworks its trivial to write tests which start the application and test its external APIs. However, with microservices you need to also test inter-service communication and application as a whole. To do that you have to launch the tested microservice and any other microservices it depends on, or their stub. You may also need to test compatibility of various versions of microservices.
+In monolithic application with modern frameworks its trivial to write tests that start the application and test its external APIs. However, with microservices we need to also test inter-service communication and application as a whole. To do that we have to launch the tested microservice and any other microservices it depends on, or their stub. We may also need to test compatibility of various versions of microservices.
+\bigskip
 
-\paragraph{Summary\newline\newline}
+\noindent\textbf{Summary\newline\newline}
 
 Microservice architecture is ideal for big, demanding, robust systems. The common problems that companies were facing were related to size of the system. Microservice architecture is designed to solve problems of systems which grew in size beyond the boundaries that were initially defined when the system was designed. Microservices are also ideal for applications with very high load and availability demands.
 
@@ -426,11 +447,11 @@ In traditional approach we built one binary of our application and deployed it t
 
 After we break our application we end up with many moving pieces. Services, binaries, different configurations etc. We need a technique to elegantly wrap our application to integrated packages that are easy to deploy and simultaneously segregate our application from the rest.
 
-In the past virtual machines\footnote{\url{https://en.wikipedia.org/wiki/Virtual_machine}} were used for this need. Virtual machines have their foundation in some computer areas, but they are cumbersome for our purpose. Each virtual machine virtualizes an entire hardware and takes up a lot of RAM and CPU. Images of virtual machines are huge because they not only contain the application but the whole operating system with the required drivers and other redundant parts. Virtual machines are hard to manage, patch, and change. Building a new image as well as starting it takes a long time, which is not ideal in microservice fast changing application.
+In the past virtual machines\footnote{\url{https://en.wikipedia.org/wiki/Virtual_machine}} were used for this need. Virtual machines have their foundation in some computer areas, but they are cumbersome for our purpose. Each virtual machine virtualizes an entire hardware and takes up a lot of RAM and CPU. Images of virtual machines are huge because they not only contain the application, but the whole operating system with the required drivers and other redundant parts. Virtual machines are hard to manage, patch, and change. Building a new image as well as starting it takes a long time, which is not ideal in microservice fast changing applications.
 
-The reason microservice architecture is financially and operationally feasible has a lot to do with containers. Containers bear much less overhead and enable you to deploy a lot more applications onto a single physical server than virtual machines do. They are also much more agile, build fast and start in milliseconds. Unlike virtual machines, containers virtualize the operating system kernel, not the hardware. So the applications in containers must all work on given kernel and there is somewhat bigger security risk if one container is compromised with superuser privileges.
+The reason microservice architecture is financially and operationally feasible has lot to do with containers. Containers bear much less overhead and enable you to deploy a lot more applications onto a single physical server than virtual machines do. They are also much more agile, build fast and start in milliseconds. Unlike virtual machines, containers virtualize the operating system kernel, not the hardware. So the applications in containers must all work on given kernel and there is somewhat bigger security risk if one container is compromised with superuser privileges.
 
-\textbf{Docker}\footnote{\url{https://www.docker.com/}} is an open-source project which brought the container principle to a mature level by providing additional layer of abstraction and tools. Docker made containers easier and safer to deploy and use than previous approaches. In picture \ref{vm_vs_docker} you can see difference in virtualization between Docker and virtual machines.
+Docker\footnote{\url{https://www.docker.com/}} is an open-source project which brought the container principle to a mature level by providing additional layer of abstraction and tools. Docker made containers easier and safer to deploy and use than previous approaches. In picture \ref{vm_vs_docker} we can see the difference in virtualization between Docker and virtual machines.
 
 \begin{figure}[ht!]
 	\label{vm_vs_docker}
@@ -441,20 +462,20 @@ The reason microservice architecture is financially and operationally feasible h
 
 \footnotetext{Source: \url{http://searchservervirtualization.techtarget.com/answer/Containers-vs-VMs-Whats-the-difference}}
 
-However Docker alone only enables us to deploy and manage containers within the scope of a single machine. Big applications need to scale and operate across multiple machines and that's where container schedulers come in. Container schedulers provide automating deployment, scaling, and management of containerized applications in our cluster of computers. They take care of deciding when and on what machine to start and stop our containers depending on the given application configuration. There are three known container schedulers: Docker's Swarm, Apache's Mesos and Google's Kubernetes\footnote{\url{https://kubernetes.io/}}, which is the most widely used one. Kubernetes project is also extended by OpenShift\footnote{\url{https://www.openshift.com/container-platform/}} project that further dulcifies management with web interface and other tools.
+However Docker alone only enables us to deploy and manage containers within the scope of a single machine. Big applications need to scale and operate across multiple machines and that's where container schedulers come in. Container schedulers automate deployment, scaling and management of containerized applications in our cluster of computers. They take care of deciding when and on what machine to start and stop our containers depending on the given application configuration. There are three known container schedulers: Docker's Swarm, Apache's Mesos and Google's Kubernetes\footnote{\url{https://kubernetes.io/}}, which is the most widely used one. Kubernetes project is also extended by OpenShift\footnote{\url{https://www.openshift.com/container-platform/}} project that further dulcifies management with web interface and other tools.
 
 \section{SilverWare}
 
-SilverWare\footnote{\url{https://github.com/SilverThings/SilverWare}} is one of the frameworks that make it easy for developers to start creating microservice applications by providing fundamental parts needed for operation of most microservices. SilverWare is written in Java and exercises minimalistic easy-to-use approach. It only integrates few powerful libraries and leaves it on the developer which ones to use. Thanks to that the compiled application is very small and take a lot less memory when running than other most known platforms, like Spring Boot or WildFly Swarm. SilverWare is made up of modules called providers. Every provider adds a part of a functionality to the application that you are building.
+SilverWare\footnote{\url{https://github.com/SilverThings/SilverWare}} is one of the frameworks that make it easy for developers to start creating microservice applications by providing fundamental parts needed for operation of most microservices. SilverWare is written in Java and exercises minimalistic easy-to-use approach. It only integrates few powerful libraries and leaves it on the developer which ones to use. Thanks to that, the compiled application is very small and take a lot less memory when running than other most known platforms, like Spring Boot or WildFly Swarm. SilverWare is made up of modules called providers. Every provider adds a part of a functionality to the application that we are building.
 
 \subsection{CDI Microservice Provider}
-The crucial and most used provider is the CDI Microservice Provider. This provider is also dependency to many other providers. It uses CDI\cite{cdi_tutorial} reference implementation Weld\footnote{\url{http://weld.cdi-spec.org/}} to equip developers with dependency injection mechanism for easy interconnecting of their microservices. Every class that represents a single microservice has to be marked with @Microservice annotation. In this microservice class you can then seamlessly call functions of other microservices by injecting them to class fields marked with @MicroserviceReference annotation. CDI provider accomplishes this by implementing its own CDI Weld extension that scans for injection points in managed microservice beans.
+The crucial and most used provider is the CDI Microservice Provider. This provider is also dependency to many other providers. It uses CDI\cite{cdi_tutorial} reference implementation Weld\footnote{\url{http://weld.cdi-spec.org/}} to equip developers with dependency injection mechanism for easy interconnecting of their microservices. Every class that represents a single microservice has to be marked with @Microservice annotation. In this microservice class we can then seamlessly call functions of other microservices by injecting them to class fields marked with @MicroserviceReference annotation. CDI provider accomplishes this by implementing its own CDI Weld extension that scans for injection points in managed microservice beans.
 
 \subsection{Cluster Microservice Provider}
 By default CDI provider injects only instances of microservice classes running in the same SilverWare instance (same JVM) which isn't too much useful. Therefore extension of the purpose of the CDI provider is the Cluster Microservice Provider. It uses JGroups\footnote{\url{http://jgroups.org/}} project for interconnecting individual SilverWare instances in configured cluster and therefore enabling developers to inject remote microservices.
 
 \subsection{HTTP Server Microservice Provider}
-Another important module is the HTTP Server Microservice Provider which allows deploying a servlet into a servlet container and providing REST interface. It uses fast and lightweight Undertow\footnote{\url{http://undertow.io/}} as an underlying web server. With this provider you are able to easily expose REST interface in any microservice by using standard @Path, @GET, @POST, @Produces annotations.
+Another important module is the HTTP Server Microservice Provider which allows deploying a servlet into a servlet container and providing REST interface. It uses fast and lightweight Undertow\footnote{\url{http://undertow.io/}} as an underlying web server. With this provider we are able to easily expose REST interface in any microservice by using standard @Path, @GET, @POST, @Produces annotations.
 
 \subsection{REST Client Microservice Provider}
 Then we have the REST Client Microservice Provider, which simplifies use of foreign REST APIs. Developers can define interface that represents given API with its paths, arguments and results and then use this interface as a type of class field annotated by @ServiceConfiguration with URL to the API. Afterwards the developer is able to use the API simply by calling functions of the interface.
@@ -472,13 +493,13 @@ SilverWare compiles our application to a single all-including JAR file, which is
 
 Monitoring of our application is necessary for many reasons. First we need to know if the application is even running, we need to know if there are any problems that have to be solved and where they are specifically. Then we need to know the current load of the application, how is it performing, what are its bottlenecks. Then we would like to know how are the users working with our application, we may be interested in various statistics about the usage of individual components and such. Also monitoring is needed for our application if it has to fulfil a service-level agreement.
 
-Monitoring of monoliths is unsophisticated. Usually we only have one powerful machine hosting an application server running your application. So we only need to care about one hardware, which we fully control, its performance and configuration and we have simple access to numerous runtime information of our application provided by the application server administration interface. Also every custom monitoring is accessible on this machine in one place.
+Monitoring of monoliths is unsophisticated. Usually we only have one powerful machine hosting an application server running our application. So we only need to care about one hardware, which we fully control, its performance and configuration and we have simple access to numerous runtime information of our application provided by the application server administration interface. Also every custom monitoring is accessible on this machine in one place.
 
 While microservices distributed architecture delivers significant benefits, it is much more complex system with many moving parts. Inner workings of the system are not so clear and accessible as with monoliths. By default there is no single administration point providing an easy survey of various statistics of the application. In large applications there may be thousands or even more microservices running at the same time on different machines across different networks. What's more, these microservices can swiftly come up and die down in a matter of seconds. Gathering overall information about the system in such environment becomes difficult. So we are in need of some central point where we could view aggregated monitoring information from individual microservices transformed into some useful results.
 
 \section{Monitoring patterns}
 
-To have a better idea of monitoring and what it includes, there is a great website\cite{ms_patterns} which breaks down design patterns used in microservices into a well arranged graph. In picture \ref{observability} we can see six main areas of observability (monitoring). All solutions for these pattern should have as little runtime overhead as possible.
+To have a better idea of monitoring and what it includes, there is a great website\cite{ms_patterns} which breaks down design patterns used in microservices into a well arranged graph. In picture \ref{observability} we can see six main areas of observability (monitoring). All solutions for these patterns should have as little runtime overhead as possible.
 
 \begin{figure}[ht!]
 	\label{observability}
@@ -488,10 +509,10 @@ To have a better idea of monitoring and what it includes, there is a great websi
 \end{figure}
 
 \subsection{Audit logging}
-Audit logging Concerns the behavior of our users. Its useful, sometimes necessary, to have a record of user actions for security, customer support or other reasons. Audit logging is made manually in business code by developers.
+Audit logging Concerns the behavior of our users. Its useful, sometimes necessary, to have a record of user actions for security, customer support or other reasons. Audit logging is manged manually in business code by developers.
 
 \subsection{Application metrics}
-We are most certainly interested in how are our individual components performing. We may want to know the usage of some components, statistics about successful and failed requests, amount of time it take for some actions to complete and other custom statistics. Most of the metrics are usually managed manually by developers in business code. Some basic metrics like usage of processor, memory and disk can be provided by either container schedulers or separate utilities inside containers.
+We are most certainly interested in how are our individual components performing. We may want to know the usage of some components, statistics about successful and failed requests, amount of time it take for some actions to complete and other custom statistics, for this purpose serve metrics. Most of the metrics are usually managed manually by developers in business code. Some basic metrics like usage of processor, memory and disk can be provided by either container schedulers or separate utilities inside containers like collectd\footnote{\url{https://collectd.org/}}.
 
 We then aggregate these metrics and create useful reports from them, fire alerts if something goes wrong and draw various monitoring graphs for operations team. Metrics are also used for evaluation of service-level agreements.
 
@@ -500,9 +521,9 @@ It has to be taken in mind that we cannot monitor everything, in big systems wit
 \subsection{Distributed tracing}
 Tracing helps us understand the behavior of our application. Requests to our application often span many different microservices and in each of them perform one or more operations, database queries and such. External monitoring of responses or metrics for individual microservices will not tell us the reasons why similar request are sometimes fast and sometimes too slow. We need to follow the requests through the whole system and log elapsed time of individual operations and other useful intermediate info.
 
-This is done by assigning unique ID to every external request and passing it together with every consequential call inside our application. Individual microservices are then able to record relating information for each request and send them together with the ID to some centralized tool. This tool then aggregates all the data and displays them in some well arranged manner or even shows dependency graph between our microservices. 
+This is done by assigning unique ID to every external request and passing it together with every subsequent call inside our application. Individual microservices are then able to record relating information for each request and send them together with the request ID to some centralized tool. This tool then aggregates all the data and displays them in some well arranged manner or even shows dependency graph between our microservices. 
 
-Tracing can be generally managed by the infrastructure or framework as for calls between microservices, but many times a cooperation of developer is needed to add useful relevant information to the traces.
+Tracing can be generally managed by the infrastructure or framework regarding calls between microservices, but many times a cooperation of developer is needed to add useful relevant information to the traces.
 
 \subsection{Health check API}
 We cannot presume that our microservice is running just because the container it's in is running. And we cannot even presume that the microservice is working and is able to fulfill its duty just because it is running. 
@@ -518,7 +539,7 @@ Examples of some health checks could be:
 \item \textbf{application logic} - are we able to run all business operations, are there any missing resources
 \end{itemize}
 
-Results of health checks can be gathered by some monitoring tool, however they primarily serve as an indication of operation for container schedulers. Container scheduler can see a container running, but he has no idea if the microservice instance in it initialized alright or if it's working as supposed to. For that reason we can define a health check API to container scheduler and if the API is inaccessible or returning some errors, the container scheduler knows it cannot route incoming request to the container and will try to restart it.
+Results of health checks can be gathered by some monitoring tool, however they primarily serve as an indication of operation for container schedulers. Container scheduler can see a container running, but it has no idea if the microservice instance in it initialized alright or if it's working as supposed to. For that reason we can define a health check API to container scheduler and if the API is inaccessible or returning some errors, the container scheduler knows it cannot route incoming request to the container and will try to restart it.
 
 \subsection{Exception tracking}
 In microservice architecture things are destined to fail, at least temporarily. Connection times out, data aren't synchronized, some service isn't momentarily available. Microservices can generate a lot of exception. So we can use a tool that aggregates these exception, de-duplicates, filters the expected ones and displays the problematic ones for further investigation by developers. This pattern does not need any assistance from developers in business code.
@@ -528,7 +549,7 @@ This is self-explanatory. Our microservices probably generate some log files, wh
 
 \section{Monitoring solutions}
 
-I focused mainly on open-source monitoring solutions that I could integrate into SilverWare. However, there also exist many proprietary solutions, which arguably do a better job as more versatile tools. These solutions put themselves into Application Performance Monitoring (APM) category representing universal all-including tools for monitoring, which on top of basic metrics and tracing capabilities sometimes offer more advanced features like Artificial Intelligence, to spot out interesting data in lots of metrics and help with finding the root cause of problems. Some of these proprietary solutions are Instana, Netsil, AppDynamics, DynaTrace, they offer integration with many container schedulers, programming languages, frameworks, databases, webservers, alerting and other tools.
+I focused mainly on open-source monitoring solutions that I could integrate into SilverWare. However, there also exist many proprietary solutions, which arguably do a better job as more versatile tools. These solutions put themselves into Application Performance Monitoring (APM) category representing universal all-including tools for monitoring, which on top of basic metrics and tracing capabilities sometimes offer more advanced features like artificial intelligence, to spot out interesting data in lots of metrics and help with finding the root cause of problems. Some of these proprietary solutions are Instana, Netsil, AppDynamics, DynaTrace, they offer integration with many container schedulers, programming languages, frameworks, databases, webservers, alerting and other tools.
 
 \subsection{OpenTracing}
 
@@ -536,9 +557,9 @@ Tracing is probably the most useful pattern in microservice architecture. Many p
 
 OpenTracing\footnote{\url{http://opentracing.io/}} is a vendor neutral open standard for distributed tracing. It is a very young project. It abstracts the tracing API from actual underlying vendor implementation, meaning that we call universal best-practice functions defined by OpenTracing standard and the underlying implementation tries to make the best use of them. At anytime we can easily change the implementation. OpenTracing does not guarantee us that we can use different tracing implementations in different components, but this is not usually needed, because we typically want to have all tracing data available in single tool.
 
-So far OpenTracing has defined tracing API in Go, JavaScript, Java, Python, Objective-C, C++. Has integrations in Spring Boot, Dropwizard, Django, Go Kit, Grpc and others in various state of development and has tracing implementations for Zipkin, Hawkular APM, Appdash, Instana, Jaeger, LightStep and others.
+So far OpenTracing has defined tracing API in Go, JavaScript, Java, Python, Objective-C, C++. It has integrations in Spring Boot, Dropwizard, Django, Go Kit, Grpc and others in various state of development and has tracing implementations for Zipkin, Hawkular APM, Appdash, Instana, Jaeger, LightStep.
 
-OpenTracing has a very simple scheme. The main element is a \textit{Span}. \textit{Spans} represent individual traced operations. \textit{Spans} always have name and time of start and end. They can hold additional information in form of key/value pairs called \textit{tags}, some of which are widely understood by tracing implementations and apply to the whole span, and also key/value logs, which apply to specific time.
+OpenTracing has a very simple scheme. Its basic element is a \textit{Span} object. \textit{Spans} represent individual traced operations. \textit{Spans} always have name and time of start and end. They can hold additional information in form of key/value pairs called \textit{tags}, some of which are widely understood by tracing implementations and apply to the the whole span \textit{Spans} can also hold key/value logs, which apply to specific time.
 
 \textit{Spans} can start other \textit{spans} in serial or parallel way, which is achieved by defining a newly created \textit{span} as a child of parent \textit{span}. That way the child \textit{span} inherits its parent's transaction id. Interconnected \textit{spans} create a acyclic graph that composes a \textit{trace}. \textit{Traces} tell the complete story of a transaction as it propagates through our system.
 
@@ -551,7 +572,7 @@ Recorded traces are typically displayed in the tracing tool in form of line grap
 	\caption{Trace with 8 spans \cite{opentracing}}
 \end{figure}
 
-Central element in the OpenTracing API is the \textit{Tracer} interface that needs to be implemented by particular tracing provider chosen by developer. Tracer interface has 3 functions:
+Central element in the OpenTracing API is the \textit{Tracer} interface that needs to be implemented by tracing provider chosen by developer. Tracer interface has 3 functions:
 
 \begin{itemize}
 \item \textbf{buildSpan(String operationName)} - returning \textit{SpanBuilder} for creation of new \textit{Span} with given name and possibly as a child of another \textit{Span} or \textit{SpanContext}
@@ -567,8 +588,9 @@ By propagation across process boundaries we particularly mean calls between micr
 \item \textbf{log(long timestampMicroseconds, Map<String, ?> fields)} - for setting span logs
 \item \textbf{setBaggageItem(String key, String value)} for binding custom developer string values to the span, which will get transfer in \textit{SpanContext} across process boundaries together with 
 \end{itemize}
+\newpage
 
-Logs are mostly used to store tracer implementation specific events, human readable messages and details of possible errors. Regarding tags, some of the widely understood are\cite{opentracing_spec}:
+Logs are mostly used to store tracer implementation specific events, human readable messages and details of possible errors. Regarding universal tags, some of the widely understood are\cite{opentracing_spec}:
 
 \begin{flushleft}
 \renewcommand{\arraystretch}{1.65}
@@ -602,7 +624,7 @@ Central part of the library is \textit{MetricRegistry} class. We register all ou
 \begin{itemize}
 \item \textbf{Gauge} - the simplest type, when reported it returns just a current integer value from given function
 \item \textbf{Counter} - a simple integer metric, provides \textit{inc(value)} and \textit{dec(value)} methods for incrementing and decrementing its value
-\item \textbf{Histogram} - a histogram measures the distribution of values in a stream of data, it provides values like min, mean, max, standard deviation, and 50\%, 75\%, 95\%, 99\% quantiles. It provides a \textit{update(value)} for adding a new value to its reservoir of cached values from which it computes results. Reservoirs can have miscellaneous implementations, some cache results for specified shorter time, some specified amount of ticks, others use more advanced algorithms to provide more long-term representative results.
+\item \textbf{Histogram} - a histogram measures the distribution of values in a stream of data, it provides values like min, mean, max, standard deviation, and  75\%, 95\%, 99\% quantiles. It provides a \textit{update(value)} for adding a new value to its reservoir of cached values from which it computes results. Reservoirs can have miscellaneous implementations, some cache results for specified shorter time, some specified amount of ticks, others use more advanced algorithms to provide more long-term representative results.
 \item \textbf{Meter} - a meter measures the rate at which an event occur, it provides mean rate and exponentially-weighted moving average rates of 1, 5 and 15 minutes. It has a \textit{mark(value)} function to add a number of new occurences
 \item \textbf{Timer} - a timer is basically a histogram of the duration of a type of event and a meter of the rate of its occurrence, it has a \textit{time()} function, which is called at the start of the measured segment and returns a \textit{Timer.Context} object on which we need to call a \textit{stop()} method at the end of the measured segment
 \end{itemize}
@@ -611,17 +633,17 @@ A sample output of the console reporter can look like:
 \begin{lstlisting}[caption = Metrics console reporter output, label = spanmanager, style=eclipse_java]
 -- Histograms --
 name1
-count = 2
-min = 12
-max = 17
-mean = 14.50
-stddev = 2.50
-median = 17.00
-75% <= 17.00
-95% <= 17.00
-98% <= 17.00
-99% <= 17.00
-99.9% <= 17.00
+count = 1540
+min = 11.95
+max = 102.61
+mean = 26.21
+stddev = 40.54
+median = 35.00
+75% <= 20.00
+95% <= 18.32
+98% <= 16.84
+99% <= 13.40
+99.9% <= 12.05
  
 -- Meters --
 name2
@@ -631,7 +653,7 @@ mean rate = 175.87 events/second
 5-minute rate = 25.34 events/second
 15-minute rate = 56.86 events/second
 \end{lstlisting}
-
+\newpage
 A request to health check API can return something like:\newline
 
 \begin{verbatim}
@@ -658,7 +680,7 @@ $ echo "metric.name 123 `date +%s`" | nc localhost 2003
 
 Prometheus\footnote{\url{https://prometheus.io/}} is another open-source metrics monitoring tool. Unlike Graphite it has a pull based approach. Microservices have to provide interface, which Prometheus scrapes for values. Prometheus scans a range of IP addresses, set in configuration, on which it hopes to find running microservices.
 
-Prometheus is time-series database just like Graphite, but in addition to simple name-value-time single record it allows the data be extended by tags. Some tags are implicit like the hostname from which the record has been scraped and some can be added by developer. Users can then filter the values according to these tags.
+Prometheus is time-series database just like Graphite, but in addition to simple name-value-time single record it allows the data to be extended by tags. Some tags are implicit like the hostname from which the record has been scraped and some can be added by developer. Users can then filter the values according to these tags.
 
 \subsection{Grafana}
 
@@ -677,10 +699,10 @@ For tracing provider I aimed to provide very easy access to tracing through stat
 
 First I decided to include the \textit{GlobalTracer} project, which already became part of the core library while I was writing this thesis. \textit{GlobalTracer} is a static wrapper class which simplifies the plugging of \textit{Tracer} implementation and provides easy access to it throughout the whole application. It has a static method \textit{register(tracer)}, that registers a developer managed \textit{Tracer} implementation and a static method \textit{get()}, that returns singleton instance of the \textit{GlobalTracer}. \textit{GlobalTracer}'s functions \textit{buildSpan(name)}, \textit{inject(spanContext)} and \textit{extract(spanContext)} then propagate to wrapped tracer implementation.
 
-Next I decided to include the \textit{SpanManager} project, that simplifies handling of \textit{Spans} throughout the code. To add tags, logs and create child spans you always need access to the current \textit{Span} instance, that encompasses your operation. Normally you would need to pass that instance through every function call and every function would have to accept it as an argument. However, \textit{SpanManager} enables us to remember and access given \textit{Span} across all functions during the execution of the same thread.
+Next I decided to include the \textit{SpanManager} project, that simplifies handling of \textit{Spans} throughout the code. To add tags, logs and create child spans you always need access to the current \textit{Span} instance, that encompasses your operation. Normally you would need to pass that instance to every function call and every function would have to accept it as an argument. However, \textit{SpanManager} enables us to remember and access given \textit{Span} across all functions during the execution of the same thread.
 It does this by utilizing Java's \textit{ThreadLocal}\footnote{\url{https://docs.oracle.com/javase/7/docs/api/java/lang/ThreadLocal.html}} class, which holds a map of values binded to \textit{Thread} objects.
 
-\textit{SpanManager} provides 3 functions. \textit{activate(span)} sets given span as current thread managed span and returns a \textit{ManagedSpan} instance containing a \textit{deactivate()} function to later unmanage the \textit{Span}. \textit{current()} returns the current thread \textit{ManagedSpan} with a \textit{Span} instance in it, or an empty \textit{ManagedSpan} if there is currently no activated \textit{Span}. You are able to stack active spans by calling \textit{activate(span)} on different \textit{Spans}, always the last still active \textit{Span} in the stack is returned by \textit{current()}. \textit{clear()} function deactivates all managed spans of current thread. In following example we can see creating a new \textit{Span} for request and its child \textit{Span} with the help of \textit{SpanManager} and \textit{Tracing} utility class.
+\textit{SpanManager} provides 3 functions. \textit{activate(span)} sets given span as current thread managed span and returns a \textit{ManagedSpan} instance containing a \textit{deactivate()} function to later unmanage the \textit{Span}. \textit{current()} returns the current thread \textit{ManagedSpan} with a \textit{Span} instance in it, or an empty \textit{ManagedSpan} if there is currently no activated \textit{Span}. You are able to stack active spans by calling \textit{activate(span)} on different \textit{Spans}, always the last still active \textit{Span} in the stack is returned by \textit{current()}. \textit{clear()} function deactivates all managed spans of current thread. In following example we can see creating a new \textit{Span} for request and its child \textit{Span} with the help of \textit{SpanManager} and \textit{Tracing}.
 \newline
 
 \begin{lstlisting}[caption = Usage of SpanManager, label = spanmanager, style=eclipse_java]
@@ -711,7 +733,7 @@ I extended \textit{HttpSilverService} class by another SilverWare context proper
 Likewise I extended \textit{RestClientSilverService} with context property that would hold universal list of client filters. \textit{OpenTracingMicroserviceProvider} then initializes this list with \textit{ClientRequestFilter} and \textit{ClientResponseFilter} implementation that automatically start and finish client spans. If in the moment of client request there is any active \textit{Span}, the client span is created as a child of it.
 
 Next example shows the integration of automatic \textit{Span} creation for server and client REST requests, taken from my quickstart. With the help of \textit{@BeanParam}\footnote{\url{http://docs.oracle.com/javaee/7/api/javax/ws/rs/BeanParam.html}} we can access the \textit{Span} created by server filter and set it as current for later to pick up as a parent span by REST client filter.
-
+\newpage
 \begin{lstlisting}[caption = Integration with REST, label = restintegration, style=eclipse_java]
 @GET
 @Path("")
@@ -773,12 +795,13 @@ For naming of individual metrics you can either use some unambiguous name relati
 
 \textit{Metrics} static utility class serves as a shortcut to accessing the global \textit{MetricRegistry} instance and \textit{HealthCheckRegistry} instance and for easier creation of some metrics. Mainly the creation of \textit{Gauge} metric by providing \textit{gauge(name, intSupplier)} which takes a name of gauge and \textit{IntSupplier} interface which can be easily implemented as a lambda function returning the value of gauge in given time. And likewise the creation of \textit{HealthCheck} through \textit{registerHealthCheck(name, healthResultSupplier)}, that takes a health check name and \textit{Supplier<HealthCheck.Result>} interface, which can be implemented by lambda function returning the health check result in given time.
 
-I also needed to solve the problem of different microservice instances reporting their metrics under the same name. Therefore I introduced a \textit{silverware.instance.id} context property, which should be set by command parameter at the start time with some unique ID. This ID is then used to eventually identify the instance in the metrics tool. If no ID is set, SilverWare will create a default one as a 6 character MD5 hash of local IP address combined with start time. ID is appended to Graphite prefix, before the name of metrics, example:
+I also needed to solve the problem of different microservice instances reporting their metrics under the same name. Therefore I introduced a \textit{silverware.instance.id} context property, which should be set by command parameter at the start time with some unique ID. This ID is then used to eventually identify the instance in the metrics tool. If no ID is set, SilverWare will create a default one as a 6-character MD5 hash of local IP address combined with start time. ID is appended to Graphite prefix, before the name of metrics, example:
 \newline
 
 \begin{verbatim}
 numberapp.worker.fibonacci.D86EA3.request.count
 \end{verbatim}
+\newpage
 
 \section{Tests}
 
@@ -802,7 +825,7 @@ All calls between these components are traced and all components generate some m
 
 Firstly we need to start the Zipkin and Graphite applications. We can install them both manually on our machine, however much better solution is to install \textit{docker} and \textit{docker-compose} and start-up public containers of these tools.
 
-To start-up a Graphite container including the Grafana tool, we can run this simple \textit{docker} command binding the standard ports to our machine. Afterwards a standard Graphite web interface will be available at \textit{http://localhost/} and Grafana web interface at \textit{http://localhost:3000/}:\newline
+To start-up a Graphite container including the Grafana tool, we can run this simple \textit{docker} command binding the standard ports to our machine. Afterwards a standard Graphite web interface will be available at \textit{http://localhost/} and Grafana web interface at \textit{http://localhost:3000/}:
 
 \begin{verbatim}
 $ docker run -d -p 80:80 -p 2003:2003 -p 3000:3000
@@ -852,7 +875,7 @@ All my implementations of both tracing and metrics providers and quickstart are 
 \item \textit{https://github.com/n3xtgen/SilverWare-Demos} - quickstart implementation in the \textit{quickstart/monitoring} folder
 \end{itemize}
 
-After consultation with my advisor Martin Večera and incorporating of his suggestions, my work will be merged into the SilverWare master repository.
+After consultation with my advisor Martin Večera and incorporation of his suggestions, my work will be merged into the SilverWare master repository.
 
 \bibliographystyle{IEEEtran}
 \bibliography{sources}

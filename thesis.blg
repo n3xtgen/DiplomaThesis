@@ -23,45 +23,45 @@ Too many commas in name 1 of "Nicola Dragoni, Saverio Giallorenzo, Alberto Lluch
 while executing---line 2411 of file IEEEtran.bst
 
 Done.
-You've used 5 entries,
+You've used 10 entries,
             4024 wiz_defined-function locations,
-            831 strings with 7805 characters,
-and the built_in function-call counts, 1918 in all, are:
-= -- 142
-> -- 20
+            851 strings with 8264 characters,
+and the built_in function-call counts, 3645 in all, are:
+= -- 282
+> -- 40
 < -- 0
-+ -- 10
-- -- 5
-* -- 73
-:= -- 366
-add.period$ -- 10
-call.type$ -- 5
-change.case$ -- 2
++ -- 20
+- -- 10
+* -- 118
+:= -- 702
+add.period$ -- 20
+call.type$ -- 10
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 144
-empty$ -- 210
-format.name$ -- 5
-if$ -- 406
+cite$ -- 10
+duplicate$ -- 279
+empty$ -- 380
+format.name$ -- 10
+if$ -- 772
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 32
-newline$ -- 42
-num.names$ -- 5
-pop$ -- 92
+int.to.str$ -- 10
+missing$ -- 67
+newline$ -- 67
+num.names$ -- 10
+pop$ -- 202
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 161
+skip$ -- 300
 stack$ -- 0
 substring$ -- 6
-swap$ -- 82
+swap$ -- 167
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 5
+type$ -- 10
 warning$ -- 0
-while$ -- 5
-width$ -- 6
-write$ -- 66
+while$ -- 10
+width$ -- 12
+write$ -- 116
 (There were 5 error messages)

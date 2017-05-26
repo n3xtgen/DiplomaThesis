@@ -3,60 +3,48 @@
 \BOOKMARK [1][-]{section.1.2}{ Structure of the Thesis}{chapter.1}% 3
 \BOOKMARK [0][-]{chapter.2}{Microservices}{}% 4
 \BOOKMARK [1][-]{section.2.1}{ Breaking the monolith}{chapter.2}% 5
-\BOOKMARK [2][-]{section*.6}{ Enterprise applications are often composed of three main parts:}{section.2.1}% 6
-\BOOKMARK [2][-]{subsection.2.1.1}{ Single responsibility principle}{section.2.1}% 7
-\BOOKMARK [2][-]{subsection.2.1.2}{ Isolation}{section.2.1}% 8
-\BOOKMARK [2][-]{subsection.2.1.3}{ Data ownership}{section.2.1}% 9
-\BOOKMARK [2][-]{subsection.2.1.4}{ Autonomy}{section.2.1}% 10
-\BOOKMARK [2][-]{subsection.2.1.5}{ Resilience}{section.2.1}% 11
-\BOOKMARK [2][-]{subsection.2.1.6}{ Light-weight communication}{section.2.1}% 12
-\BOOKMARK [2][-]{subsection.2.1.7}{ Continuous integration}{section.2.1}% 13
-\BOOKMARK [3][-]{section*.7}{ Key practices that enable continuous integration are:}{subsection.2.1.7}% 14
-\BOOKMARK [2][-]{subsection.2.1.8}{ Utilization of infrastructure}{section.2.1}% 15
-\BOOKMARK [2][-]{subsection.2.1.9}{ Conway's Law}{section.2.1}% 16
-\BOOKMARK [1][-]{section.2.2}{ Microservices vs Service Oriented Architecture}{chapter.2}% 17
-\BOOKMARK [2][-]{section*.8}{ Lets summarize the key differences:}{section.2.2}% 18
-\BOOKMARK [1][-]{section.2.3}{ Advantages and disadvantages}{chapter.2}% 19
-\BOOKMARK [2][-]{section*.9}{ The Benefits of Microservices}{section.2.3}% 20
-\BOOKMARK [2][-]{subsection.2.3.1}{ Long-term maintainability}{section.2.3}% 21
-\BOOKMARK [2][-]{subsection.2.3.2}{ Independent and horizontal scalability}{section.2.3}% 22
-\BOOKMARK [2][-]{subsection.2.3.3}{ Continuous delivery}{section.2.3}% 23
-\BOOKMARK [2][-]{subsection.2.3.4}{ Technology diversity}{section.2.3}% 24
-\BOOKMARK [3][-]{section*.10}{ The Drawbacks of Microservices}{subsection.2.3.4}% 25
-\BOOKMARK [2][-]{subsection.2.3.5}{ Architecture complexity}{section.2.3}% 26
-\BOOKMARK [2][-]{subsection.2.3.6}{ Network communication}{section.2.3}% 27
-\BOOKMARK [2][-]{subsection.2.3.7}{ Data consistency}{section.2.3}% 28
-\BOOKMARK [2][-]{subsection.2.3.8}{ Testing complexity}{section.2.3}% 29
-\BOOKMARK [3][-]{section*.11}{ Summary}{subsection.2.3.8}% 30
-\BOOKMARK [1][-]{section.2.4}{ Containers}{chapter.2}% 31
-\BOOKMARK [1][-]{section.2.5}{ SilverWare}{chapter.2}% 32
-\BOOKMARK [2][-]{subsection.2.5.1}{ CDI Microservice Provider}{section.2.5}% 33
-\BOOKMARK [2][-]{subsection.2.5.2}{ Cluster Microservice Provider}{section.2.5}% 34
-\BOOKMARK [2][-]{subsection.2.5.3}{ HTTP Server Microservice Provider}{section.2.5}% 35
-\BOOKMARK [2][-]{subsection.2.5.4}{ REST Client Microservice Provider}{section.2.5}% 36
-\BOOKMARK [2][-]{subsection.2.5.5}{ Hystrix Microservice Provider}{section.2.5}% 37
-\BOOKMARK [2][-]{subsection.2.5.6}{ Other microservice providers}{section.2.5}% 38
-\BOOKMARK [2][-]{subsection.2.5.7}{ Build}{section.2.5}% 39
-\BOOKMARK [0][-]{chapter.3}{Monitoring of microservices}{}% 40
-\BOOKMARK [1][-]{section.3.1}{ Monitoring patterns}{chapter.3}% 41
-\BOOKMARK [2][-]{subsection.3.1.1}{ Audit logging}{section.3.1}% 42
-\BOOKMARK [2][-]{subsection.3.1.2}{ Application metrics}{section.3.1}% 43
-\BOOKMARK [2][-]{subsection.3.1.3}{ Distributed tracing}{section.3.1}% 44
-\BOOKMARK [2][-]{subsection.3.1.4}{ Health check API}{section.3.1}% 45
-\BOOKMARK [2][-]{subsection.3.1.5}{ Exception tracking}{section.3.1}% 46
-\BOOKMARK [2][-]{subsection.3.1.6}{ Log aggregation}{section.3.1}% 47
-\BOOKMARK [1][-]{section.3.2}{ Monitoring solutions}{chapter.3}% 48
-\BOOKMARK [2][-]{subsection.3.2.1}{ OpenTracing}{section.3.2}% 49
-\BOOKMARK [2][-]{subsection.3.2.2}{ Zipkin}{section.3.2}% 50
-\BOOKMARK [2][-]{subsection.3.2.3}{ Hawkular APM}{section.3.2}% 51
-\BOOKMARK [2][-]{subsection.3.2.4}{ Metrics library}{section.3.2}% 52
-\BOOKMARK [2][-]{subsection.3.2.5}{ Graphite}{section.3.2}% 53
-\BOOKMARK [2][-]{subsection.3.2.6}{ Prometheus}{section.3.2}% 54
-\BOOKMARK [2][-]{subsection.3.2.7}{ Grafana}{section.3.2}% 55
-\BOOKMARK [0][-]{chapter.4}{Monitoring extension for SilverWare}{}% 56
-\BOOKMARK [1][-]{section.4.1}{ OpenTracing Microservice Provider}{chapter.4}% 57
-\BOOKMARK [1][-]{section.4.2}{ Metrics Microservice Provider}{chapter.4}% 58
-\BOOKMARK [1][-]{section.4.3}{ Tests}{chapter.4}% 59
-\BOOKMARK [0][-]{chapter.5}{Quickstart}{}% 60
-\BOOKMARK [1][-]{subsection.5.0.1}{ Startup}{chapter.5}% 61
-\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 62
+\BOOKMARK [2][-]{subsection.2.1.1}{ Single responsibility principle}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.2}{ Isolation}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.3}{ Data ownership}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.4}{ Autonomy}{section.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.1.5}{ Resilience}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.6}{ Light-weight communication}{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.7}{ Continuous integration}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.8}{ Utilization of infrastructure}{section.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.1.9}{ Conway's Law}{section.2.1}% 14
+\BOOKMARK [1][-]{section.2.2}{ Microservices vs Service Oriented Architecture}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.3}{ Advantages and disadvantages}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.3.1}{ Benefits of Microservices}{section.2.3}% 17
+\BOOKMARK [2][-]{subsection.2.3.2}{ Drawbacks of Microservices}{section.2.3}% 18
+\BOOKMARK [1][-]{section.2.4}{ Containers}{chapter.2}% 19
+\BOOKMARK [1][-]{section.2.5}{ SilverWare}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.5.1}{ CDI Microservice Provider}{section.2.5}% 21
+\BOOKMARK [2][-]{subsection.2.5.2}{ Cluster Microservice Provider}{section.2.5}% 22
+\BOOKMARK [2][-]{subsection.2.5.3}{ HTTP Server Microservice Provider}{section.2.5}% 23
+\BOOKMARK [2][-]{subsection.2.5.4}{ REST Client Microservice Provider}{section.2.5}% 24
+\BOOKMARK [2][-]{subsection.2.5.5}{ Hystrix Microservice Provider}{section.2.5}% 25
+\BOOKMARK [2][-]{subsection.2.5.6}{ Other microservice providers}{section.2.5}% 26
+\BOOKMARK [2][-]{subsection.2.5.7}{ Build}{section.2.5}% 27
+\BOOKMARK [0][-]{chapter.3}{Monitoring of microservices}{}% 28
+\BOOKMARK [1][-]{section.3.1}{ Monitoring patterns}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.1.1}{ Audit logging}{section.3.1}% 30
+\BOOKMARK [2][-]{subsection.3.1.2}{ Application metrics}{section.3.1}% 31
+\BOOKMARK [2][-]{subsection.3.1.3}{ Distributed tracing}{section.3.1}% 32
+\BOOKMARK [2][-]{subsection.3.1.4}{ Health check API}{section.3.1}% 33
+\BOOKMARK [2][-]{subsection.3.1.5}{ Exception tracking}{section.3.1}% 34
+\BOOKMARK [2][-]{subsection.3.1.6}{ Log aggregation}{section.3.1}% 35
+\BOOKMARK [1][-]{section.3.2}{ Monitoring solutions}{chapter.3}% 36
+\BOOKMARK [2][-]{subsection.3.2.1}{ OpenTracing}{section.3.2}% 37
+\BOOKMARK [2][-]{subsection.3.2.2}{ Zipkin}{section.3.2}% 38
+\BOOKMARK [2][-]{subsection.3.2.3}{ Hawkular APM}{section.3.2}% 39
+\BOOKMARK [2][-]{subsection.3.2.4}{ Metrics library}{section.3.2}% 40
+\BOOKMARK [2][-]{subsection.3.2.5}{ Graphite}{section.3.2}% 41
+\BOOKMARK [2][-]{subsection.3.2.6}{ Prometheus}{section.3.2}% 42
+\BOOKMARK [2][-]{subsection.3.2.7}{ Grafana}{section.3.2}% 43
+\BOOKMARK [0][-]{chapter.4}{Monitoring extension for SilverWare}{}% 44
+\BOOKMARK [1][-]{section.4.1}{ OpenTracing Microservice Provider}{chapter.4}% 45
+\BOOKMARK [1][-]{section.4.2}{ Metrics Microservice Provider}{chapter.4}% 46
+\BOOKMARK [1][-]{section.4.3}{ Tests}{chapter.4}% 47
+\BOOKMARK [0][-]{chapter.5}{Quickstart}{}% 48
+\BOOKMARK [1][-]{subsection.5.0.1}{ Startup}{chapter.5}% 49
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 50
